@@ -28303,7 +28303,7 @@ MovieView.PropTypes = {
         title: (0, _propTypesDefault.default).string,
         description: (0, _propTypesDefault.default).string,
         genre: (0, _propTypesDefault.default).string,
-        director: propTypes.string
+        director: (0, _propTypesDefault.default).string
     }).isRequired,
     onBackClick: (0, _propTypesDefault.default).func.isRequired
 };

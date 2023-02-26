@@ -30,7 +30,7 @@ MovieView.PropTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         genre: PropTypes.string,
-        director: propTypes.string
+        director: PropTypes.string
     }).isRequired,
     onBackClick: PropTypes.func.isRequired
 };
