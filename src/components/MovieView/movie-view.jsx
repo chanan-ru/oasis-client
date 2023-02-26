@@ -29,7 +29,7 @@ MovieView.PropTypes = {
     movie: PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
-        genre: PropTypes.string,
+        // genre: PropTypes.string,
         director: propTypes.string
     }).isRequired,
     onBackClick: PropTypes.func.isRequired
