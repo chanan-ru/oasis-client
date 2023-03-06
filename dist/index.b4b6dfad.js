@@ -27280,13 +27280,12 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$0362.prelude(module);
 
 try {
-// imported the useState() function with an empty array.
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactProductionMin = require("react/cjs/react.production.min");
+//imported the useState() function with an empty array.
 var _movieCard = require("../MovieCard/movie-card");
 var _movieView = require("../MovieView/movie-view");
 var _loginView = require("../LoginView/login-view");
@@ -27294,25 +27293,35 @@ var _signupView = require("../SignupView/signup-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
-    // the value is "Null" to tell the app that no book cards were clicked. 
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const [user, setUser] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
-        fetch("https://oasismovie.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            const moviesFromApi = data.map((detail)=>{
-                return {
-                    id: detail._id,
-                    title: detail.Title,
-                    image: detail.ImageURL,
-                    description: detail.Description,
-                    genre: detail.GenreID.Name,
-                    director: detail.DirectorID.Name
-                };
-            });
-            setMovies(moviesFromApi);
+        if (!token) return;
+        fetch("https://oasismovie.herokuapp.com/movies", {
+            headers: {
+                Authorization: "Bearer ${token}"
+            }
+        }).then((response)=>response.json()).then((movies)=>{
+            setMovies(movies);
+        // const moviesFromApi = data.map((detail) => {
+        //     return {
+        //         id: detail._id,
+        //         title: detail.Title,
+        //         image: detail.ImageURL,
+        //         description: detail.Description,
+        //         genre: detail.GenreID.Name,
+        //         director: detail.DirectorID.Name
+        //     };
+        // });
+        // setMovies(moviesFromApi);
         });
-    }, []);
+    }, [
+        token
+    ]);
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
@@ -27322,13 +27331,13 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 40,
+                lineNumber: 50,
                 columnNumber: 17
             }, undefined),
             "or",
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 45,
+                lineNumber: 57,
                 columnNumber: 17
             }, undefined)
         ]
@@ -27338,14 +27347,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 52,
-        columnNumber: 16
+        lineNumber: 64,
+        columnNumber: 13
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 56,
+        lineNumber: 69,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27358,28 +27367,30 @@ const MainView = ()=>{
                         }
                     }, movie.id, false, {
                         fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 63,
+                        lineNumber: 76,
                         columnNumber: 21
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 61,
+                lineNumber: 74,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 onClick: ()=>{
                     setUser(null);
+                    setToken(null);
+                    localStorage.clear();
                 },
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 72,
+                lineNumber: 85,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(MainView, "AA2Lbd5vppiQn5Rpxq/geFPiCys=");
+_s(MainView, "9wJBvfUyU2IigbyWC+M5y3EH9h4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27389,7 +27400,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../MovieCard/movie-card":"dg3Ls","../MovieView/movie-view":"9Uua1","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","react/cjs/react.production.min":"88SCs","../LoginView/login-view":"6cJc6","../SignupView/signup-view":"bpvce"}],"dg3Ls":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../MovieCard/movie-card":"dg3Ls","../MovieView/movie-view":"9Uua1","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","../LoginView/login-view":"6cJc6","../SignupView/signup-view":"bpvce"}],"dg3Ls":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$2506 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28353,337 +28364,7 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","prop-types":"7wKI2"}],"88SCs":[function(require,module,exports) {
-/**
- * @license React
- * react.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */ "use strict";
-var l = Symbol.for("react.element"), n = Symbol.for("react.portal"), p = Symbol.for("react.fragment"), q = Symbol.for("react.strict_mode"), r = Symbol.for("react.profiler"), t = Symbol.for("react.provider"), u = Symbol.for("react.context"), v = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), x = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), z = Symbol.iterator;
-function A(a) {
-    if (null === a || "object" !== typeof a) return null;
-    a = z && a[z] || a["@@iterator"];
-    return "function" === typeof a ? a : null;
-}
-var B = {
-    isMounted: function() {
-        return !1;
-    },
-    enqueueForceUpdate: function() {},
-    enqueueReplaceState: function() {},
-    enqueueSetState: function() {}
-}, C = Object.assign, D = {};
-function E(a, b, e) {
-    this.props = a;
-    this.context = b;
-    this.refs = D;
-    this.updater = e || B;
-}
-E.prototype.isReactComponent = {};
-E.prototype.setState = function(a, b) {
-    if ("object" !== typeof a && "function" !== typeof a && null != a) throw Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");
-    this.updater.enqueueSetState(this, a, b, "setState");
-};
-E.prototype.forceUpdate = function(a) {
-    this.updater.enqueueForceUpdate(this, a, "forceUpdate");
-};
-function F() {}
-F.prototype = E.prototype;
-function G(a, b, e) {
-    this.props = a;
-    this.context = b;
-    this.refs = D;
-    this.updater = e || B;
-}
-var H = G.prototype = new F;
-H.constructor = G;
-C(H, E.prototype);
-H.isPureReactComponent = !0;
-var I = Array.isArray, J = Object.prototype.hasOwnProperty, K = {
-    current: null
-}, L = {
-    key: !0,
-    ref: !0,
-    __self: !0,
-    __source: !0
-};
-function M(a, b, e) {
-    var d, c = {}, k = null, h = null;
-    if (null != b) for(d in void 0 !== b.ref && (h = b.ref), void 0 !== b.key && (k = "" + b.key), b)J.call(b, d) && !L.hasOwnProperty(d) && (c[d] = b[d]);
-    var g = arguments.length - 2;
-    if (1 === g) c.children = e;
-    else if (1 < g) {
-        for(var f = Array(g), m = 0; m < g; m++)f[m] = arguments[m + 2];
-        c.children = f;
-    }
-    if (a && a.defaultProps) for(d in g = a.defaultProps, g)void 0 === c[d] && (c[d] = g[d]);
-    return {
-        $$typeof: l,
-        type: a,
-        key: k,
-        ref: h,
-        props: c,
-        _owner: K.current
-    };
-}
-function N(a, b) {
-    return {
-        $$typeof: l,
-        type: a.type,
-        key: b,
-        ref: a.ref,
-        props: a.props,
-        _owner: a._owner
-    };
-}
-function O(a) {
-    return "object" === typeof a && null !== a && a.$$typeof === l;
-}
-function escape(a) {
-    var b = {
-        "=": "=0",
-        ":": "=2"
-    };
-    return "$" + a.replace(/[=:]/g, function(a) {
-        return b[a];
-    });
-}
-var P = /\/+/g;
-function Q(a, b) {
-    return "object" === typeof a && null !== a && null != a.key ? escape("" + a.key) : b.toString(36);
-}
-function R(a, b, e, d, c) {
-    var k = typeof a;
-    if ("undefined" === k || "boolean" === k) a = null;
-    var h = !1;
-    if (null === a) h = !0;
-    else switch(k){
-        case "string":
-        case "number":
-            h = !0;
-            break;
-        case "object":
-            switch(a.$$typeof){
-                case l:
-                case n:
-                    h = !0;
-            }
-    }
-    if (h) return h = a, c = c(h), a = "" === d ? "." + Q(h, 0) : d, I(c) ? (e = "", null != a && (e = a.replace(P, "$&/") + "/"), R(c, b, e, "", function(a) {
-        return a;
-    })) : null != c && (O(c) && (c = N(c, e + (!c.key || h && h.key === c.key ? "" : ("" + c.key).replace(P, "$&/") + "/") + a)), b.push(c)), 1;
-    h = 0;
-    d = "" === d ? "." : d + ":";
-    if (I(a)) for(var g = 0; g < a.length; g++){
-        k = a[g];
-        var f = d + Q(k, g);
-        h += R(k, b, e, f, c);
-    }
-    else if (f = A(a), "function" === typeof f) for(a = f.call(a), g = 0; !(k = a.next()).done;)k = k.value, f = d + Q(k, g++), h += R(k, b, e, f, c);
-    else if ("object" === k) throw b = String(a), Error("Objects are not valid as a React child (found: " + ("[object Object]" === b ? "object with keys {" + Object.keys(a).join(", ") + "}" : b) + "). If you meant to render a collection of children, use an array instead.");
-    return h;
-}
-function S(a, b, e) {
-    if (null == a) return a;
-    var d = [], c = 0;
-    R(a, d, "", "", function(a) {
-        return b.call(e, a, c++);
-    });
-    return d;
-}
-function T(a) {
-    if (-1 === a._status) {
-        var b = a._result;
-        b = b();
-        b.then(function(b) {
-            if (0 === a._status || -1 === a._status) a._status = 1, a._result = b;
-        }, function(b) {
-            if (0 === a._status || -1 === a._status) a._status = 2, a._result = b;
-        });
-        -1 === a._status && (a._status = 0, a._result = b);
-    }
-    if (1 === a._status) return a._result.default;
-    throw a._result;
-}
-var U = {
-    current: null
-}, V = {
-    transition: null
-}, W = {
-    ReactCurrentDispatcher: U,
-    ReactCurrentBatchConfig: V,
-    ReactCurrentOwner: K
-};
-exports.Children = {
-    map: S,
-    forEach: function(a, b, e) {
-        S(a, function() {
-            b.apply(this, arguments);
-        }, e);
-    },
-    count: function(a) {
-        var b = 0;
-        S(a, function() {
-            b++;
-        });
-        return b;
-    },
-    toArray: function(a) {
-        return S(a, function(a) {
-            return a;
-        }) || [];
-    },
-    only: function(a) {
-        if (!O(a)) throw Error("React.Children.only expected to receive a single React element child.");
-        return a;
-    }
-};
-exports.Component = E;
-exports.Fragment = p;
-exports.Profiler = r;
-exports.PureComponent = G;
-exports.StrictMode = q;
-exports.Suspense = w;
-exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = W;
-exports.cloneElement = function(a, b, e) {
-    if (null === a || void 0 === a) throw Error("React.cloneElement(...): The argument must be a React element, but you passed " + a + ".");
-    var d = C({}, a.props), c = a.key, k = a.ref, h = a._owner;
-    if (null != b) {
-        void 0 !== b.ref && (k = b.ref, h = K.current);
-        void 0 !== b.key && (c = "" + b.key);
-        if (a.type && a.type.defaultProps) var g = a.type.defaultProps;
-        for(f in b)J.call(b, f) && !L.hasOwnProperty(f) && (d[f] = void 0 === b[f] && void 0 !== g ? g[f] : b[f]);
-    }
-    var f = arguments.length - 2;
-    if (1 === f) d.children = e;
-    else if (1 < f) {
-        g = Array(f);
-        for(var m = 0; m < f; m++)g[m] = arguments[m + 2];
-        d.children = g;
-    }
-    return {
-        $$typeof: l,
-        type: a.type,
-        key: c,
-        ref: k,
-        props: d,
-        _owner: h
-    };
-};
-exports.createContext = function(a) {
-    a = {
-        $$typeof: u,
-        _currentValue: a,
-        _currentValue2: a,
-        _threadCount: 0,
-        Provider: null,
-        Consumer: null,
-        _defaultValue: null,
-        _globalName: null
-    };
-    a.Provider = {
-        $$typeof: t,
-        _context: a
-    };
-    return a.Consumer = a;
-};
-exports.createElement = M;
-exports.createFactory = function(a) {
-    var b = M.bind(null, a);
-    b.type = a;
-    return b;
-};
-exports.createRef = function() {
-    return {
-        current: null
-    };
-};
-exports.forwardRef = function(a) {
-    return {
-        $$typeof: v,
-        render: a
-    };
-};
-exports.isValidElement = O;
-exports.lazy = function(a) {
-    return {
-        $$typeof: y,
-        _payload: {
-            _status: -1,
-            _result: a
-        },
-        _init: T
-    };
-};
-exports.memo = function(a, b) {
-    return {
-        $$typeof: x,
-        type: a,
-        compare: void 0 === b ? null : b
-    };
-};
-exports.startTransition = function(a) {
-    var b = V.transition;
-    V.transition = {};
-    try {
-        a();
-    } finally{
-        V.transition = b;
-    }
-};
-exports.unstable_act = function() {
-    throw Error("act(...) is not supported in production builds of React.");
-};
-exports.useCallback = function(a, b) {
-    return U.current.useCallback(a, b);
-};
-exports.useContext = function(a) {
-    return U.current.useContext(a);
-};
-exports.useDebugValue = function() {};
-exports.useDeferredValue = function(a) {
-    return U.current.useDeferredValue(a);
-};
-exports.useEffect = function(a, b) {
-    return U.current.useEffect(a, b);
-};
-exports.useId = function() {
-    return U.current.useId();
-};
-exports.useImperativeHandle = function(a, b, e) {
-    return U.current.useImperativeHandle(a, b, e);
-};
-exports.useInsertionEffect = function(a, b) {
-    return U.current.useInsertionEffect(a, b);
-};
-exports.useLayoutEffect = function(a, b) {
-    return U.current.useLayoutEffect(a, b);
-};
-exports.useMemo = function(a, b) {
-    return U.current.useMemo(a, b);
-};
-exports.useReducer = function(a, b, e) {
-    return U.current.useReducer(a, b, e);
-};
-exports.useRef = function(a) {
-    return U.current.useRef(a);
-};
-exports.useState = function(a) {
-    return U.current.useState(a);
-};
-exports.useSyncExternalStore = function(a, b, e) {
-    return U.current.useSyncExternalStore(a, b, e);
-};
-exports.useTransition = function() {
-    return U.current.useTransition();
-};
-exports.version = "18.2.0";
-
-},{}],"6cJc6":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","prop-types":"7wKI2"}],"6cJc6":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7eca = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28695,12 +28376,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "LoginView", ()=>LoginView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
 const LoginView = ({ onLoggedIn  })=>{
     _s();
-    const [username, setUsername] = (0, _react.useState)(" ");
-    const [password, setPassword] = (0, _react.useState)(" ");
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
@@ -28708,12 +28388,22 @@ const LoginView = ({ onLoggedIn  })=>{
             access: username,
             secret: password
         };
-        fetch("https://openlibrary.org/account/login.json", {
+        fetch("https://oasismovie.herokuapp.com/login", {
+            // fetch("https://openlibrary.org/account/login.json", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(data)
-        }).then((response)=>{
-            if (response.ok) onLoggedIn(username);
-            else alert("Login failed");
+        }).then((response)=>response.json()).then((data)=>{
+            console.log("Login response: ", data);
+            if (data.user) {
+                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("token", data.token);
+                onLoggedIn(data.user, data.token);
+            } else alert("No such user");
+        }).catch((e)=>{
+            alert("Something went wrong");
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -28729,13 +28419,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/LoginView/login-view.jsx",
-                        lineNumber: 33,
+                        lineNumber: 43,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/LoginView/login-view.jsx",
-                lineNumber: 31,
+                lineNumber: 41,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28748,13 +28438,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/LoginView/login-view.jsx",
-                        lineNumber: 37,
+                        lineNumber: 51,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/LoginView/login-view.jsx",
-                lineNumber: 35,
+                lineNumber: 49,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28762,17 +28452,17 @@ const LoginView = ({ onLoggedIn  })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/LoginView/login-view.jsx",
-                lineNumber: 39,
+                lineNumber: 57,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/LoginView/login-view.jsx",
-        lineNumber: 30,
+        lineNumber: 40,
         columnNumber: 9
     }, undefined);
 };
-_s(LoginView, "+dLWxLsObwxeQUEr0V0bctW4mcU=");
+_s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
 _c = LoginView;
 var _c;
 $RefreshReg$(_c, "LoginView");
@@ -28813,7 +28503,7 @@ const SignupView = ()=>{
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json"
+                "Content-Type": "application/json"
             }
         }).then((response)=>{
             if (response.ok) {
@@ -28835,13 +28525,13 @@ const SignupView = ()=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/SignupView/signup-view.jsx",
-                        lineNumber: 39,
+                        lineNumber: 40,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/SignupView/signup-view.jsx",
-                lineNumber: 37,
+                lineNumber: 38,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28854,13 +28544,13 @@ const SignupView = ()=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/SignupView/signup-view.jsx",
-                        lineNumber: 43,
+                        lineNumber: 44,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/SignupView/signup-view.jsx",
-                lineNumber: 41,
+                lineNumber: 42,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28873,13 +28563,13 @@ const SignupView = ()=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/SignupView/signup-view.jsx",
-                        lineNumber: 47,
+                        lineNumber: 48,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/SignupView/signup-view.jsx",
-                lineNumber: 45,
+                lineNumber: 46,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28892,13 +28582,13 @@ const SignupView = ()=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/SignupView/signup-view.jsx",
-                        lineNumber: 51,
+                        lineNumber: 52,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/SignupView/signup-view.jsx",
-                lineNumber: 49,
+                lineNumber: 50,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28906,13 +28596,13 @@ const SignupView = ()=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/SignupView/signup-view.jsx",
-                lineNumber: 53,
+                lineNumber: 54,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/SignupView/signup-view.jsx",
-        lineNumber: 36,
+        lineNumber: 37,
         columnNumber: 9
     }, undefined);
 };

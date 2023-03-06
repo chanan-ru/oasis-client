@@ -1,55 +1,68 @@
-// imported the useState() function with an empty array.
 import { useState, useEffect } from "react";
-import { useReducer } from "react/cjs/react.production.min";
+//imported the useState() function with an empty array.
+
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignupView/signup-view";
 
 export const MainView = () => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
-    // the value is "Null" to tell the app that no book cards were clicked. 
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        fetch("https://oasismovie.herokuapp.com/movies")
+
+        if (!token) {
+            return;
+        }
+
+        fetch("https://oasismovie.herokuapp.com/movies", {
+            headers: { Authorization: 'Bearer ${token}' }
+        })
             .then((response) => response.json())
-            .then((data) => {
+            .then((movies) => {
 
-                const moviesFromApi = data.map((detail) => {
-                    return {
-                        id: detail._id,
-                        title: detail.Title,
-                        image: detail.ImageURL,
-                        description: detail.Description,
-                        genre: detail.GenreID.Name,
-                        director: detail.DirectorID.Name
-                    };
-                });
-
-                setMovies(moviesFromApi);
+                setMovies(movies);
 
 
+                // const moviesFromApi = data.map((detail) => {
+                //     return {
+                //         id: detail._id,
+                //         title: detail.Title,
+                //         image: detail.ImageURL,
+                //         description: detail.Description,
+                //         genre: detail.GenreID.Name,
+                //         director: detail.DirectorID.Name
+                //     };
+                // });
+
+                // setMovies(moviesFromApi);
             });
-    }, []);
+    }, [token]);
 
     if (!user) {
         return (
             <>
-                <LoginView onLoggedIn={(user, token) => {
-                    setUser(user);
-                    setToken(token);
-                }} />
+                <LoginView
+                    onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                    }}
+                />
                 or
-                <SignupView />
+                < SignupView />
             </>
         );
-
-    };
+    }
 
     if (selectedMovie) {
-        return <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />;
+        return (
+            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        );
     }
 
     if (movies.length === 0) {
@@ -69,12 +82,8 @@ export const MainView = () => {
                     />
                 ))}
             </div>
-            <button onClick={() => { setUser(null); }}>Logout</button>
+            <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
+
         </>
     );
-
-
 };
-
-
-

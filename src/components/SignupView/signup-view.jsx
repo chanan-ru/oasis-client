@@ -16,11 +16,12 @@ export const SignupView = () => {
             Password: password,
             Email: email
         };
+
         fetch("SIGNUP_URL", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json"
+                "Content-Type": "application/json"
             }
         }).then((response) => {
             if (response.ok) {
