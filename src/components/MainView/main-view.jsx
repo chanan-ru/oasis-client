@@ -21,26 +21,25 @@ export const MainView = () => {
         }
 
         fetch("https://oasismovie.herokuapp.com/movies", {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => response.json())
             .then((movies) => {
 
-                setMovies(movies);
+                // setMovies(movies);
 
+                const moviesFromApi = movies.map((detail) => {
+                    return {
+                        id: detail._id,
+                        title: detail.Title,
+                        image: detail.ImageURL,
+                        description: detail.Description,
+                        genre: detail.GenreID.Name,
+                        director: detail.DirectorID.Name
+                    };
+                });
 
-                // const moviesFromApi = data.map((detail) => {
-                //     return {
-                //         id: detail._id,
-                //         title: detail.Title,
-                //         image: detail.ImageURL,
-                //         description: detail.Description,
-                //         genre: detail.GenreID.Name,
-                //         director: detail.DirectorID.Name
-                //     };
-                // });
-
-                // setMovies(moviesFromApi);
+                setMovies(moviesFromApi);
             });
     }, [token]);
 

@@ -9,18 +9,18 @@ export const LoginView = ({ onLoggedIn }) => {
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
 
         fetch("https://oasismovie.herokuapp.com/login", {
-            // fetch("https://openlibrary.org/account/login.json", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        }).then((response) => response.json())
+        })
+            .then((response) => response.json())
             .then((data) => {
                 console.log("Login response: ", data);
                 if (data.user) {
@@ -34,6 +34,8 @@ export const LoginView = ({ onLoggedIn }) => {
             .catch((e) => {
                 alert("Something went wrong");
             });
+
+
     };
 
     return (
@@ -54,7 +56,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     onChange={(e) => setPassword(e.target.value)}
                     required />
             </label>
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
         </form>
     );
 };

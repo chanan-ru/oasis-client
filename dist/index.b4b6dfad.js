@@ -27303,21 +27303,21 @@ const MainView = ()=>{
         if (!token) return;
         fetch("https://oasismovie.herokuapp.com/movies", {
             headers: {
-                Authorization: "Bearer ${token}"
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>response.json()).then((movies)=>{
-            setMovies(movies);
-        // const moviesFromApi = data.map((detail) => {
-        //     return {
-        //         id: detail._id,
-        //         title: detail.Title,
-        //         image: detail.ImageURL,
-        //         description: detail.Description,
-        //         genre: detail.GenreID.Name,
-        //         director: detail.DirectorID.Name
-        //     };
-        // });
-        // setMovies(moviesFromApi);
+            // setMovies(movies);
+            const moviesFromApi = movies.map((detail)=>{
+                return {
+                    id: detail._id,
+                    title: detail.Title,
+                    image: detail.ImageURL,
+                    description: detail.Description,
+                    genre: detail.GenreID.Name,
+                    director: detail.DirectorID.Name
+                };
+            });
+            setMovies(moviesFromApi);
         });
     }, [
         token
@@ -27331,13 +27331,13 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 49,
                 columnNumber: 17
             }, undefined),
             "or",
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 57,
+                lineNumber: 56,
                 columnNumber: 17
             }, undefined)
         ]
@@ -27347,14 +27347,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 64,
+        lineNumber: 63,
         columnNumber: 13
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 69,
+        lineNumber: 68,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27367,12 +27367,12 @@ const MainView = ()=>{
                         }
                     }, movie.id, false, {
                         fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 76,
+                        lineNumber: 75,
                         columnNumber: 21
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 74,
+                lineNumber: 73,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27384,7 +27384,7 @@ const MainView = ()=>{
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 85,
+                lineNumber: 84,
                 columnNumber: 13
             }, undefined)
         ]
@@ -28385,11 +28385,10 @@ const LoginView = ({ onLoggedIn  })=>{
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
         fetch("https://oasismovie.herokuapp.com/login", {
-            // fetch("https://openlibrary.org/account/login.json", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28419,13 +28418,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/LoginView/login-view.jsx",
-                        lineNumber: 43,
+                        lineNumber: 45,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/LoginView/login-view.jsx",
-                lineNumber: 41,
+                lineNumber: 43,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28438,27 +28437,27 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/LoginView/login-view.jsx",
-                        lineNumber: 51,
+                        lineNumber: 53,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/LoginView/login-view.jsx",
-                lineNumber: 49,
+                lineNumber: 51,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 type: "submit",
-                children: "Submit"
+                children: "Login"
             }, void 0, false, {
                 fileName: "src/components/LoginView/login-view.jsx",
-                lineNumber: 57,
+                lineNumber: 59,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/LoginView/login-view.jsx",
-        lineNumber: 40,
+        lineNumber: 42,
         columnNumber: 9
     }, undefined);
 };
