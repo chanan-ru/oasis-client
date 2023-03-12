@@ -1,4 +1,10 @@
 import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+import './signup-view.scss';
 
 export const SignupView = () => {
 
@@ -34,29 +40,58 @@ export const SignupView = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Name:
-                <input type="text" value={signUpName} onChange={(e) => setSignUpName(e.target.value)} required />
-            </label>
-            <label>
-                Username:
-                <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            </label>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+        <Row className="justify-content-md-center">
+            <Col>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="fromSignUpName" className="mb-3">
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={signUpName}
+                            onChange={(e) => setSignUpName(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="formUserName" className="mb-3">
+                        <Form.Label>Username:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                            required
+                            minLength="5"
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="formPassword" className="mb-3">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            minLength="5"
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="formEmail" className="mb-3">
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Sign Up
+                    </Button>
+                </Form>
+            </Col>
+        </Row>
+
     );
 
 }
-
-{/* <form onSubmit={handleSubmit}>
-    
-</form> */}
