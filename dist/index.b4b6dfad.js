@@ -2964,7 +2964,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/MainView/main-view":"jovED","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","react-bootstrap/Container":"hEdsw","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/MainView/main-view":"jovED","react-bootstrap/Container":"hEdsw","./index.scss":"lJZlQ","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("2a17176e7371fd59");
 
@@ -27166,6 +27166,7 @@ var _movieCard = require("../MovieCard/movie-card");
 var _movieView = require("../MovieView/movie-view");
 var _loginView = require("../LoginView/login-view");
 var _signupView = require("../SignupView/signup-view");
+var _navigationBar = require("../NavigationBar/navigation-bar");
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
 var _row = require("react-bootstrap/Row");
@@ -27182,7 +27183,6 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://oasismovie.herokuapp.com/movies", {
@@ -27190,9 +27190,8 @@ const MainView = ()=>{
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>response.json()).then((data)=>{
-            // setMovies(movies);
+            console.log(data);
             const moviesFromApi = data.map((detail)=>{
-                // console.log(detail);
                 return {
                     id: detail._id,
                     title: detail.Title,
@@ -27205,165 +27204,116 @@ const MainView = ()=>{
             setMovies(moviesFromApi);
         });
     }, []);
-    // if (!user) {
-    //     return (
-    //         <>
-    //             <Row className="justify-content-md-center">
-    //                 <Col md={5} className="mb-5 mt-5">
-    //                     <h1>Welcome to Oasis Movie!</h1>
-    //                 </Col>
-    //             </Row>
-    //             <Row className="justify-content-md-center">
-    //                 <Col md={5}>
-    //                     <LoginView
-    //                         onLoggedIn={(user, token) => {
-    //                             setUser(user);
-    //                             setToken(token);
-    //                         }}
-    //                     />
-    //                 </Col>
-    //             </Row>
-    //             <Row className="justify-content-md-center mt-5 mb-3">
-    //                 <Col md={5}>
-    //                     Or create new account
-    //                 </Col>
-    //             </Row>
-    //             <Row className="justify-content-md-center mb-5">
-    //                 <Col md={5}>
-    //                     < SignupView />
-    //                 </Col>
-    //             </Row>
-    //         </>
-    //     );
-    // }
-    // if (selectedMovie) {
-    //     return (
-    //         <Row className="justify-content-md-center mt-5 mb-5">
-    //             <Col>
-    //                 <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    //             </Col>
-    //         </Row>
-    //     );
-    // }
-    // if (movies.length === 0) {
-    //     return <div>The list is empty!</div>;
-    // }
-    // return (
-    //     <>
-    //         <Row >
-    //             {movies.map((movie) => (
-    //                 <Col key={movie.id} lg={3} md={6} className="mb-5">
-    //                     <MovieCard
-    //                         key={movie.id}
-    //                         movie={movie}
-    //                         onMovieClick={(newSelectedMovie) => {
-    //                             setSelectedMovie(newSelectedMovie);
-    //                         }}
-    //                     />
-    //                 </Col>
-    //             ))}
-    //         </Row>
-    //         <Button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }} variant="primary" type="submit" className="mb-5">Logout</Button>
-    //     </>
-    // );
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-            className: "mt-5",
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                        path: "/signup",
-                        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                            children: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/"
-                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                md: 5,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, void 0, void 0)
-                            }, void 0, false, void 0, void 0)
-                        }, void 0, false)
-                    }, void 0, false, {
-                        fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 133,
-                        columnNumber: 21
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                        path: "/login",
-                        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                            children: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/"
-                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                md: 5,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-                                    onLoggedIn: (user)=>setUser(user)
-                                }, void 0, false, void 0, void 0)
-                            }, void 0, false, void 0, void 0)
-                        }, void 0, false)
-                    }, void 0, false, {
-                        fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 148,
-                        columnNumber: 21
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                        path: "/movies/:Title",
-                        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                            children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/login",
-                                replace: true
-                            }, void 0, false, void 0, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                children: "The list is empty!"
-                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                md: 8,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                                    movies: movies
-                                }, void 0, false, void 0, void 0)
-                            }, void 0, false, void 0, void 0)
-                        }, void 0, false)
-                    }, void 0, false, {
-                        fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 163,
-                        columnNumber: 21
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                        path: "/",
-                        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                            children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/login",
-                                replace: true
-                            }, void 0, false, void 0, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                children: "The list is empty!"
-                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                        className: "mb-4",
-                                        md: 3,
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                            movie: movie
-                                        }, void 0, false, void 0, void 0)
-                                    }, movie.id, false, void 0, void 0))
-                            }, void 0, false)
-                        }, void 0, false)
-                    }, void 0, false, {
-                        fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 179,
-                        columnNumber: 21
-                    }, undefined)
-                ]
-            }, void 0, true, {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
+                user: user,
+                onLoggedOut: ()=>{
+                    setUser(null);
+                }
+            }, void 0, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 132,
-                columnNumber: 17
+                lineNumber: 58,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                className: "mt-5",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            path: "/signup",
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                children: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                    to: "/"
+                                }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                    md: 5,
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, void 0, void 0)
+                                }, void 0, false, void 0, void 0)
+                            }, void 0, false)
+                        }, void 0, false, {
+                            fileName: "src/components/MainView/main-view.jsx",
+                            lineNumber: 66,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            path: "/login",
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                children: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                    to: "/"
+                                }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                    md: 5,
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
+                                        onLoggedIn: (user)=>setUser(user)
+                                    }, void 0, false, void 0, void 0)
+                                }, void 0, false, void 0, void 0)
+                            }, void 0, false)
+                        }, void 0, false, {
+                            fileName: "src/components/MainView/main-view.jsx",
+                            lineNumber: 81,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            path: "/movies/:movieID",
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                    to: "/login",
+                                    replace: true
+                                }, void 0, false, void 0, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                    children: "The list is empty!"
+                                }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                    md: 8,
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                                        movies: movies
+                                    }, void 0, false, void 0, void 0)
+                                }, void 0, false, void 0, void 0)
+                            }, void 0, false)
+                        }, void 0, false, {
+                            fileName: "src/components/MainView/main-view.jsx",
+                            lineNumber: 96,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            path: "/",
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                    to: "/login",
+                                    replace: true
+                                }, void 0, false, void 0, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                    children: "The list is empty!"
+                                }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                    children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                            className: "mb-4",
+                                            md: 3,
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                movie: movie
+                                            }, void 0, false, void 0, void 0)
+                                        }, movie.id, false, void 0, void 0))
+                                }, void 0, false)
+                            }, void 0, false)
+                        }, void 0, false, {
+                            fileName: "src/components/MainView/main-view.jsx",
+                            lineNumber: 112,
+                            columnNumber: 21
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/MainView/main-view.jsx",
+                    lineNumber: 65,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/MainView/main-view.jsx",
+                lineNumber: 64,
+                columnNumber: 13
             }, undefined)
-        }, void 0, false, {
-            fileName: "src/components/MainView/main-view.jsx",
-            lineNumber: 131,
-            columnNumber: 13
-        }, undefined)
-    }, void 0, false, {
+        ]
+    }, void 0, true, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 130,
+        lineNumber: 57,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "9wJBvfUyU2IigbyWC+M5y3EH9h4=");
+_s(MainView, "vrQobkEX5jhNcI69dtstaSSmWyg=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27373,170 +27323,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","../MovieCard/movie-card":"dg3Ls","../LoginView/login-view":"6cJc6","../SignupView/signup-view":"bpvce","../MovieView/movie-view":"9Uua1","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","./main-view.scss":"enN6u","react-router-dom":"9xmpe"}],"HajzQ":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"6mB9M":[function(require,module,exports) {
-"use strict";
-var Refresh = require("a268319e1bf59635");
-function debounce(func, delay) {
-    {
-        let timeout = undefined;
-        let lastTime = 0;
-        return function(args) {
-            // Call immediately if last call was more than the delay ago.
-            // Otherwise, set a timeout. This means the first call is fast
-            // (for the common case of a single update), and subsequent updates
-            // are batched.
-            let now = Date.now();
-            if (now - lastTime > delay) {
-                lastTime = now;
-                func.call(null, args);
-            } else {
-                clearTimeout(timeout);
-                timeout = setTimeout(function() {
-                    timeout = undefined;
-                    lastTime = Date.now();
-                    func.call(null, args);
-                }, delay);
-            }
-        };
-    }
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module1) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module1.id + " " + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module1) {
-    if (isReactRefreshBoundary(module1.exports)) {
-        registerExportsForReactRefresh(module1);
-        if (module1.hot) {
-            module1.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module1.exports;
-            });
-            module1.hot.accept(function(getParents) {
-                var prevExports = module1.hot.data.prevExports;
-                var nextExports = module1.exports; // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module1) {
-    var exports = module1.exports, id = module1.id;
-    Refresh.register(exports, id + " %exports%");
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        Refresh.register(exportValue, id + " %exports% " + key);
-    }
-}
-
-},{"a268319e1bf59635":"3Qevs"}],"dg3Ls":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../MovieCard/movie-card":"dg3Ls","../MovieView/movie-view":"9Uua1","../LoginView/login-view":"6cJc6","../SignupView/signup-view":"bpvce","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","react-router-dom":"9xmpe","./main-view.scss":"enN6u","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","../NavigationBar/navigation-bar":"3fCaw"}],"dg3Ls":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$2506 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27625,7 +27412,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","./movie-card.scss":"2era4","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"9xmpe"}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./movie-card.scss":"2era4","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -28372,7 +28159,7 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"b3aac4659fa418cf":"jZTZJ","985b800a737720c1":"fqKuf"}],"2era4":[function() {},{}],"3AD9A":[function(require,module,exports) {
+},{"b3aac4659fa418cf":"jZTZJ","985b800a737720c1":"fqKuf"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -28811,7 +28598,37 @@ function _extends() {
 }
 exports.default = _extends;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"adHgr":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"HajzQ":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"adHgr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -41225,7 +41042,7 @@ exports.default = Tooltip;
 
 },{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","./helpers":"gotcT","./getInitialPopperStyles":"c8j3Q","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"9xmpe":[function(require,module,exports) {
 /**
- * React Router DOM v6.8.2
+ * React Router DOM v6.9.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -41250,7 +41067,6 @@ parcelHelpers.export(exports, "UNSAFE_DataRouterStateContext", ()=>(0, _reactRou
 parcelHelpers.export(exports, "UNSAFE_LocationContext", ()=>(0, _reactRouter.UNSAFE_LocationContext));
 parcelHelpers.export(exports, "UNSAFE_NavigationContext", ()=>(0, _reactRouter.UNSAFE_NavigationContext));
 parcelHelpers.export(exports, "UNSAFE_RouteContext", ()=>(0, _reactRouter.UNSAFE_RouteContext));
-parcelHelpers.export(exports, "UNSAFE_enhanceManualRouteObjects", ()=>(0, _reactRouter.UNSAFE_enhanceManualRouteObjects));
 parcelHelpers.export(exports, "createMemoryRouter", ()=>(0, _reactRouter.createMemoryRouter));
 parcelHelpers.export(exports, "createPath", ()=>(0, _reactRouter.createPath));
 parcelHelpers.export(exports, "createRoutesFromChildren", ()=>(0, _reactRouter.createRoutesFromChildren));
@@ -41286,6 +41102,7 @@ parcelHelpers.export(exports, "useRevalidator", ()=>(0, _reactRouter.useRevalida
 parcelHelpers.export(exports, "useRouteError", ()=>(0, _reactRouter.useRouteError));
 parcelHelpers.export(exports, "useRouteLoaderData", ()=>(0, _reactRouter.useRouteLoaderData));
 parcelHelpers.export(exports, "useRoutes", ()=>(0, _reactRouter.useRoutes));
+//#endregion
 parcelHelpers.export(exports, "BrowserRouter", ()=>BrowserRouter);
 parcelHelpers.export(exports, "Form", ()=>Form);
 parcelHelpers.export(exports, "HashRouter", ()=>HashRouter);
@@ -41476,7 +41293,8 @@ function createBrowserRouter(routes, opts) {
             window: opts == null ? void 0 : opts.window
         }),
         hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
-        routes: (0, _reactRouter.UNSAFE_enhanceManualRouteObjects)(routes)
+        routes,
+        detectErrorBoundary: (0, _reactRouter.UNSAFE_detectErrorBoundary)
     }).initialize();
 }
 function createHashRouter(routes, opts) {
@@ -41486,7 +41304,8 @@ function createHashRouter(routes, opts) {
             window: opts == null ? void 0 : opts.window
         }),
         hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
-        routes: (0, _reactRouter.UNSAFE_enhanceManualRouteObjects)(routes)
+        routes,
+        detectErrorBoundary: (0, _reactRouter.UNSAFE_detectErrorBoundary)
     }).initialize();
 }
 function parseHydrationData() {
@@ -41801,7 +41620,7 @@ function useDataRouterState(hookName) {
  * A convenient wrapper for reading and writing search parameters via the
  * URLSearchParams interface.
  */ function useSearchParams(defaultInit) {
-    warning(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params\n\nIf you're unsure how to load polyfills, we recommend you check out https://polyfill.io/v3/ which provides some recommendations about how to load polyfills only for users that need them, instead of for every user.");
+    (0, _router.UNSAFE_warning)(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params\n\nIf you're unsure how to load polyfills, we recommend you check out https://polyfill.io/v3/ which provides some recommendations about how to load polyfills only for users that need them, instead of for every user.");
     let defaultSearchParamsRef = _react.useRef(createSearchParams(defaultInit));
     let hasSetSearchParamsRef = _react.useRef(false);
     let location = (0, _reactRouter.useLocation)();
@@ -42112,27 +41931,10 @@ let savedScrollPositions = {};
         message
     ]);
 }
-////////////////////////////////////////////////////////////////////////////////
-//#region Utils
-////////////////////////////////////////////////////////////////////////////////
-function warning(cond, message) {
-    if (!cond) {
-        // eslint-disable-next-line no-console
-        if (typeof console !== "undefined") console.warn(message);
-        try {
-            // Welcome to debugging React Router!
-            //
-            // This error is thrown as a convenience so you can more easily
-            // find the source for a warning that appears in the console by
-            // enabling "pause on exceptions" in your JavaScript debugger.
-            throw new Error(message); // eslint-disable-next-line no-empty
-        } catch (e) {}
-    }
-} //#endregion
 
 },{"react":"21dqq","react-router":"dbWyW","@remix-run/router":"5ncDG","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"dbWyW":[function(require,module,exports) {
 /**
- * React Router v6.8.2
+ * React Router v6.9.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -42167,7 +41969,7 @@ parcelHelpers.export(exports, "UNSAFE_DataRouterStateContext", ()=>DataRouterSta
 parcelHelpers.export(exports, "UNSAFE_LocationContext", ()=>LocationContext);
 parcelHelpers.export(exports, "UNSAFE_NavigationContext", ()=>NavigationContext);
 parcelHelpers.export(exports, "UNSAFE_RouteContext", ()=>RouteContext);
-parcelHelpers.export(exports, "UNSAFE_enhanceManualRouteObjects", ()=>enhanceManualRouteObjects);
+parcelHelpers.export(exports, "UNSAFE_detectErrorBoundary", ()=>detectErrorBoundary);
 parcelHelpers.export(exports, "createMemoryRouter", ()=>createMemoryRouter);
 parcelHelpers.export(exports, "createRoutesFromChildren", ()=>createRoutesFromChildren);
 parcelHelpers.export(exports, "createRoutesFromElements", ()=>createRoutesFromChildren);
@@ -42195,16 +41997,6 @@ parcelHelpers.export(exports, "useRouteLoaderData", ()=>useRouteLoaderData);
 parcelHelpers.export(exports, "useRoutes", ()=>useRoutes);
 var _router = require("@remix-run/router");
 var _react = require("react");
-function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function(target) {
-        for(var i = 1; i < arguments.length; i++){
-            var source = arguments[i];
-            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-        }
-        return target;
-    };
-    return _extends.apply(this, arguments);
-}
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -42364,6 +42156,16 @@ const RouteContext = /*#__PURE__*/ _react.createContext({
 RouteContext.displayName = "Route";
 const RouteErrorContext = /*#__PURE__*/ _react.createContext(null);
 RouteErrorContext.displayName = "RouteError";
+function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
 /**
  * Returns the full href for the given "to" value. This is useful for building
  * custom links that are also accessible and preserve right-click behavior.
@@ -42455,7 +42257,7 @@ RouteErrorContext.displayName = "RouteError";
     });
     let navigate = _react.useCallback(function(to, options) {
         if (options === void 0) options = {};
-        (0, _router.warning)(activeRef.current, "You should call navigate() in a React.useEffect(), not when your component is first rendered.");
+        (0, _router.UNSAFE_warning)(activeRef.current, "You should call navigate() in a React.useEffect(), not when your component is first rendered.");
         if (!activeRef.current) return;
         if (typeof to === "number") {
             navigator.go(to);
@@ -42579,8 +42381,8 @@ const OutletContext = /*#__PURE__*/ _react.createContext(null);
     let matches = (0, _router.matchRoutes)(routes, {
         pathname: remainingPathname
     });
-    (0, _router.warning)(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" ');
-    (0, _router.warning)(matches == null || matches[matches.length - 1].route.element !== undefined, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element. ' + 'This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');
+    (0, _router.UNSAFE_warning)(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" ');
+    (0, _router.UNSAFE_warning)(matches == null || matches[matches.length - 1].route.element !== undefined || matches[matches.length - 1].route.Component !== undefined, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" ' + "does not have an element or Component. This means it will render an <Outlet /> with a " + 'null value by default resulting in an "empty" page.');
     let renderedMatches = _renderMatches(matches && matches.map((match)=>Object.assign({}, match, {
             params: Object.assign({}, parentParams, match.params),
             pathname: (0, _router.joinPaths)([
@@ -42608,7 +42410,7 @@ const OutletContext = /*#__PURE__*/ _react.createContext(null);
     }, renderedMatches);
     return renderedMatches;
 }
-function DefaultErrorElement() {
+function DefaultErrorComponent() {
     let error = useRouteError();
     let message = (0, _router.isRouteErrorResponse)(error) ? error.status + " " + error.statusText : error instanceof Error ? error.message : JSON.stringify(error);
     let stack = error instanceof Error ? error.stack : null;
@@ -42624,7 +42426,7 @@ function DefaultErrorElement() {
     let devInfo = null;
     devInfo = /*#__PURE__*/ _react.createElement(_react.Fragment, null, /*#__PURE__*/ _react.createElement("p", null, "\uD83D\uDCBF Hey developer \uD83D\uDC4B"), /*#__PURE__*/ _react.createElement("p", null, "You can provide a way better UX than this when your app throws errors by providing your own\xa0", /*#__PURE__*/ _react.createElement("code", {
         style: codeStyles
-    }, "errorElement"), " props on\xa0", /*#__PURE__*/ _react.createElement("code", {
+    }, "ErrorBoundary"), " prop on\xa0", /*#__PURE__*/ _react.createElement("code", {
         style: codeStyles
     }, "<Route>")));
     return /*#__PURE__*/ _react.createElement(_react.Fragment, null, /*#__PURE__*/ _react.createElement("h2", null, "Unexpected Application Error!"), /*#__PURE__*/ _react.createElement("h3", {
@@ -42686,7 +42488,7 @@ function RenderedRoute(_ref) {
     let { routeContext , match , children  } = _ref;
     let dataRouterContext = _react.useContext(DataRouterContext); // Track how deep we got in our render pass to emulate SSR componentDidCatch
     // in a DataStaticRouter
-    if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && match.route.errorElement) dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
+    if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
     return /*#__PURE__*/ _react.createElement(RouteContext.Provider, {
         value: routeContext
     }, children);
@@ -42708,18 +42510,30 @@ function _renderMatches(matches, parentMatches, dataRouterState) {
     }
     return renderedMatches.reduceRight((outlet, match, index)=>{
         let error = match.route.id ? errors == null ? void 0 : errors[match.route.id] : null; // Only data routers handle errors
-        let errorElement = dataRouterState ? match.route.errorElement || /*#__PURE__*/ _react.createElement(DefaultErrorElement, null) : null;
+        let errorElement = null;
+        if (dataRouterState) {
+            if (match.route.ErrorBoundary) errorElement = /*#__PURE__*/ _react.createElement(match.route.ErrorBoundary, null);
+            else if (match.route.errorElement) errorElement = match.route.errorElement;
+            else errorElement = /*#__PURE__*/ _react.createElement(DefaultErrorComponent, null);
+        }
         let matches = parentMatches.concat(renderedMatches.slice(0, index + 1));
-        let getChildren = ()=>/*#__PURE__*/ _react.createElement(RenderedRoute, {
+        let getChildren = ()=>{
+            let children = outlet;
+            if (error) children = errorElement;
+            else if (match.route.Component) children = /*#__PURE__*/ _react.createElement(match.route.Component, null);
+            else if (match.route.element) children = match.route.element;
+            return /*#__PURE__*/ _react.createElement(RenderedRoute, {
                 match: match,
                 routeContext: {
                     outlet,
                     matches
-                }
-            }, error ? errorElement : match.route.element !== undefined ? match.route.element : outlet); // Only wrap in an error boundary within data router usages when we have an
-        // errorElement on this route.  Otherwise let it bubble up to an ancestor
-        // errorElement
-        return dataRouterState && (match.route.errorElement || index === 0) ? /*#__PURE__*/ _react.createElement(RenderErrorBoundary, {
+                },
+                children: children
+            });
+        }; // Only wrap in an error boundary within data router usages when we have an
+        // ErrorBoundary/errorElement on this route.  Otherwise let it bubble up to
+        // an ancestor ErrorBoundary/errorElement
+        return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index === 0) ? /*#__PURE__*/ _react.createElement(RenderErrorBoundary, {
             location: dataRouterState.location,
             component: errorElement,
             error: error,
@@ -42738,6 +42552,7 @@ var DataRouterHook;
 })(DataRouterHook || (DataRouterHook = {}));
 var DataRouterStateHook;
 (function(DataRouterStateHook) {
+    DataRouterStateHook["UseBlocker"] = "useBlocker";
     DataRouterStateHook["UseLoaderData"] = "useLoaderData";
     DataRouterStateHook["UseActionData"] = "useActionData";
     DataRouterStateHook["UseRouteError"] = "useRouteError";
@@ -42837,7 +42652,7 @@ function useCurrentRouteId(hookName) {
 /**
  * Returns the nearest ancestor Route error, which could be a loader/action
  * error or a render error.  This is intended to be called from your
- * errorElement to display a proper error message.
+ * ErrorBoundary/errorElement to display a proper error message.
  */ function useRouteError() {
     var _state$errors;
     let error = _react.useContext(RouteErrorContext);
@@ -42868,6 +42683,7 @@ let blockerId = 0;
  * cross-origin navigations.
  */ function useBlocker(shouldBlock) {
     let { router  } = useDataRouterContext(DataRouterHook.UseBlocker);
+    let state = useDataRouterState(DataRouterStateHook.UseBlocker);
     let [blockerKey] = _react.useState(()=>String(++blockerId));
     let blockerFunction = _react.useCallback((args)=>{
         return typeof shouldBlock === "function" ? !!shouldBlock(args) : !!shouldBlock;
@@ -42878,24 +42694,27 @@ let blockerId = 0;
     _react.useEffect(()=>()=>router.deleteBlocker(blockerKey), [
         router,
         blockerKey
-    ]);
-    return blocker;
+    ]); // Prefer the blocker from state since DataRouterContext is memoized so this
+    // ensures we update on blocker state updates
+    return state.blockers.get(blockerKey) || blocker;
 }
 const alreadyWarned = {};
 function warningOnce(key, cond, message) {
     if (!cond && !alreadyWarned[key]) {
         alreadyWarned[key] = true;
-        (0, _router.warning)(false, message);
+        (0, _router.UNSAFE_warning)(false, message);
     }
 }
 /**
  * Given a Remix Router instance, render the appropriate UI
  */ function RouterProvider(_ref) {
     let { fallbackElement , router  } = _ref;
-    // Sync router state to our component state to force re-renders
-    let state = useSyncExternalStore(router.subscribe, ()=>router.state, // but we pass our serialized hydration data into the router so state here
+    let getState = _react.useCallback(()=>router.state, [
+        router
+    ]); // Sync router state to our component state to force re-renders
+    let state = useSyncExternalStore(router.subscribe, getState, // but we pass our serialized hydration data into the router so state here
     // is already synced with what the server saw
-    ()=>router.state);
+    getState);
     let navigator = _react.useMemo(()=>{
         return {
             createHref: router.createHref,
@@ -42914,20 +42733,24 @@ function warningOnce(key, cond, message) {
     }, [
         router
     ]);
-    let basename = router.basename || "/"; // The fragment and {null} here are important!  We need them to keep React 18's
+    let basename = router.basename || "/";
+    let dataRouterContext = _react.useMemo(()=>({
+            router,
+            navigator,
+            static: false,
+            basename
+        }), [
+        router,
+        navigator,
+        basename
+    ]); // The fragment and {null} here are important!  We need them to keep React 18's
     // useId happy when we are server-rendering since we may have a <script> here
     // containing the hydrated server-side staticContext (from StaticRouterProvider).
     // useId relies on the component tree structure to generate deterministic id's
     // so we need to ensure it remains the same on the client even though
     // we don't need the <script> tag
     return /*#__PURE__*/ _react.createElement(_react.Fragment, null, /*#__PURE__*/ _react.createElement(DataRouterContext.Provider, {
-        value: {
-            router,
-            navigator,
-            static: false,
-            // Do we need this?
-            basename
-        }
+        value: dataRouterContext
     }, /*#__PURE__*/ _react.createElement(DataRouterStateContext.Provider, {
         value: state
     }, /*#__PURE__*/ _react.createElement(Router, {
@@ -42977,7 +42800,7 @@ function warningOnce(key, cond, message) {
     let { to , replace , state , relative  } = _ref3;
     !useInRouterContext() && (0, _router.UNSAFE_invariant)(false, // the router loaded. We can help them understand how to avoid that.
     "<Navigate> may be used only in the context of a <Router> component.");
-    (0, _router.warning)(!_react.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
+    (0, _router.UNSAFE_warning)(!_react.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
     let dataRouterState = _react.useContext(DataRouterStateContext);
     let navigate = useNavigate();
     _react.useEffect(()=>{
@@ -43031,15 +42854,18 @@ function warningOnce(key, cond, message) {
     ]);
     if (typeof locationProp === "string") locationProp = (0, _router.parsePath)(locationProp);
     let { pathname ="/" , search ="" , hash ="" , state =null , key ="default"  } = locationProp;
-    let location = _react.useMemo(()=>{
+    let locationContext = _react.useMemo(()=>{
         let trailingPathname = (0, _router.stripBasename)(pathname, basename);
         if (trailingPathname == null) return null;
         return {
-            pathname: trailingPathname,
-            search,
-            hash,
-            state,
-            key
+            location: {
+                pathname: trailingPathname,
+                search,
+                hash,
+                state,
+                key
+            },
+            navigationType
         };
     }, [
         basename,
@@ -43047,18 +42873,16 @@ function warningOnce(key, cond, message) {
         search,
         hash,
         state,
-        key
+        key,
+        navigationType
     ]);
-    (0, _router.warning)(location != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.");
-    if (location == null) return null;
+    (0, _router.UNSAFE_warning)(locationContext != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.");
+    if (locationContext == null) return null;
     return /*#__PURE__*/ _react.createElement(NavigationContext.Provider, {
         value: navigationContext
     }, /*#__PURE__*/ _react.createElement(LocationContext.Provider, {
         children: children,
-        value: {
-            location,
-            navigationType
-        }
+        value: locationContext
     }));
 }
 /**
@@ -43204,14 +43028,17 @@ class AwaitErrorBoundary extends _react.Component {
             id: element.props.id || treePath.join("-"),
             caseSensitive: element.props.caseSensitive,
             element: element.props.element,
+            Component: element.props.Component,
             index: element.props.index,
             path: element.props.path,
             loader: element.props.loader,
             action: element.props.action,
             errorElement: element.props.errorElement,
-            hasErrorBoundary: element.props.errorElement != null,
+            ErrorBoundary: element.props.ErrorBoundary,
+            hasErrorBoundary: element.props.ErrorBoundary != null || element.props.errorElement != null,
             shouldRevalidate: element.props.shouldRevalidate,
-            handle: element.props.handle
+            handle: element.props.handle,
+            lazy: element.props.lazy
         };
         if (element.props.children) route.children = createRoutesFromChildren(element.props.children, treePath);
         routes.push(route);
@@ -43223,17 +43050,11 @@ class AwaitErrorBoundary extends _react.Component {
  */ function renderMatches(matches) {
     return _renderMatches(matches);
 }
-/**
- * @private
- * Walk the route tree and add hasErrorBoundary if it's not provided, so that
- * users providing manual route arrays can just specify errorElement
- */ function enhanceManualRouteObjects(routes) {
-    return routes.map((route)=>{
-        let routeClone = _extends({}, route);
-        if (routeClone.hasErrorBoundary == null) routeClone.hasErrorBoundary = routeClone.errorElement != null;
-        if (routeClone.children) routeClone.children = enhanceManualRouteObjects(routeClone.children);
-        return routeClone;
-    });
+function detectErrorBoundary(route) {
+    if (route.Component && route.element) (0, _router.UNSAFE_warning)(false, "You should not include both `Component` and `element` on your route - `element` will be ignored.");
+    if (route.ErrorBoundary && route.errorElement) (0, _router.UNSAFE_warning)(false, "You should not include both `ErrorBoundary` and `errorElement` on your route - `errorElement` will be ignored.");
+    // there if you change this
+    return Boolean(route.ErrorBoundary) || Boolean(route.errorElement);
 }
 function createMemoryRouter(routes, opts) {
     return (0, _router.createRouter)({
@@ -43243,13 +43064,14 @@ function createMemoryRouter(routes, opts) {
             initialIndex: opts == null ? void 0 : opts.initialIndex
         }),
         hydrationData: opts == null ? void 0 : opts.hydrationData,
-        routes: enhanceManualRouteObjects(routes)
+        routes,
+        detectErrorBoundary
     }).initialize();
 } ///////////////////////////////////////////////////////////////////////////////
 
 },{"@remix-run/router":"5ncDG","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"5ncDG":[function(require,module,exports) {
 /**
- * @remix-run/router v1.3.3
+ * @remix-run/router v1.4.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -43270,6 +43092,7 @@ parcelHelpers.export(exports, "UNSAFE_DeferredData", ()=>DeferredData);
 parcelHelpers.export(exports, "UNSAFE_convertRoutesToDataRoutes", ()=>convertRoutesToDataRoutes);
 parcelHelpers.export(exports, "UNSAFE_getPathContributingMatches", ()=>getPathContributingMatches);
 parcelHelpers.export(exports, "UNSAFE_invariant", ()=>invariant);
+parcelHelpers.export(exports, "UNSAFE_warning", ()=>warning);
 parcelHelpers.export(exports, "createBrowserHistory", ()=>createBrowserHistory);
 parcelHelpers.export(exports, "createHashHistory", ()=>createHashHistory);
 parcelHelpers.export(exports, "createMemoryHistory", ()=>createMemoryHistory);
@@ -43291,7 +43114,6 @@ parcelHelpers.export(exports, "redirect", ()=>redirect);
 parcelHelpers.export(exports, "resolvePath", ()=>resolvePath);
 parcelHelpers.export(exports, "resolveTo", ()=>resolveTo);
 parcelHelpers.export(exports, "stripBasename", ()=>stripBasename);
-parcelHelpers.export(exports, "warning", ()=>warning);
 function _extends() {
     _extends = Object.assign ? Object.assign.bind() : function(target) {
         for(var i = 1; i < arguments.length; i++){
@@ -43349,7 +43171,7 @@ const PopStateEventType = "popstate";
     function createMemoryLocation(to, state, key) {
         if (state === void 0) state = null;
         let location = createLocation(entries ? getCurrentLocation().pathname : "/", to, state, key);
-        warning$1(location.pathname.charAt(0) === "/", "relative pathnames are not supported in memory history: " + JSON.stringify(to));
+        warning(location.pathname.charAt(0) === "/", "relative pathnames are not supported in memory history: " + JSON.stringify(to));
         return location;
     }
     function createHref(to) {
@@ -43467,14 +43289,14 @@ const PopStateEventType = "popstate";
         return href + "#" + (typeof to === "string" ? to : createPath(to));
     }
     function validateHashLocation(location, to) {
-        warning$1(location.pathname.charAt(0) === "/", "relative pathnames are not supported in hash history.push(" + JSON.stringify(to) + ")");
+        warning(location.pathname.charAt(0) === "/", "relative pathnames are not supported in hash history.push(" + JSON.stringify(to) + ")");
     }
     return getUrlBasedHistory(createHashLocation, createHashHref, validateHashLocation, options);
 }
 function invariant(value, message) {
     if (value === false || value === null || typeof value === "undefined") throw new Error(message);
 }
-function warning$1(cond, message) {
+function warning(cond, message) {
     if (!cond) {
         // eslint-disable-next-line no-console
         if (typeof console !== "undefined") console.warn(message);
@@ -43664,13 +43486,21 @@ var ResultType;
     ResultType["redirect"] = "redirect";
     ResultType["error"] = "error";
 })(ResultType || (ResultType = {}));
+const immutableRouteKeys = new Set([
+    "lazy",
+    "caseSensitive",
+    "path",
+    "id",
+    "index",
+    "children"
+]);
 function isIndexRoute(route) {
     return route.index === true;
 } // Walk the route tree generating unique IDs where necessary so we are working
 // solely with AgnosticDataRouteObject's within the Router
-function convertRoutesToDataRoutes(routes, parentPath, allIds) {
+function convertRoutesToDataRoutes(routes, detectErrorBoundary, parentPath, manifest) {
     if (parentPath === void 0) parentPath = [];
-    if (allIds === void 0) allIds = new Set();
+    if (manifest === void 0) manifest = {};
     return routes.map((route, index)=>{
         let treePath = [
             ...parentPath,
@@ -43678,18 +43508,22 @@ function convertRoutesToDataRoutes(routes, parentPath, allIds) {
         ];
         let id = typeof route.id === "string" ? route.id : treePath.join("-");
         invariant(route.index !== true || !route.children, "Cannot specify children on an index route");
-        invariant(!allIds.has(id), 'Found a route id collision on id "' + id + '".  Route ' + "id's must be globally unique within Data Router usages");
-        allIds.add(id);
+        invariant(!manifest[id], 'Found a route id collision on id "' + id + '".  Route ' + "id's must be globally unique within Data Router usages");
         if (isIndexRoute(route)) {
             let indexRoute = _extends({}, route, {
+                hasErrorBoundary: detectErrorBoundary(route),
                 id
             });
+            manifest[id] = indexRoute;
             return indexRoute;
         } else {
             let pathOrLayoutRoute = _extends({}, route, {
                 id,
-                children: route.children ? convertRoutesToDataRoutes(route.children, treePath, allIds) : undefined
+                hasErrorBoundary: detectErrorBoundary(route),
+                children: undefined
             });
+            manifest[id] = pathOrLayoutRoute;
+            if (route.children) pathOrLayoutRoute.children = convertRoutesToDataRoutes(route.children, detectErrorBoundary, treePath, manifest);
             return pathOrLayoutRoute;
         }
     });
@@ -43873,26 +43707,27 @@ function matchRouteBranch(branch, pathname) {
     if (path.endsWith("*") && path !== "*" && !path.endsWith("/*")) {
         warning(false, 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".'));
         path = path.replace(/\*$/, "/*");
-    }
-    return path.replace(/^:(\w+)(\??)/g, (_, key, optional)=>{
-        let param = params[key];
-        if (optional === "?") return param == null ? "" : param;
-        if (param == null) invariant(false, 'Missing ":' + key + '" param');
-        return param;
-    }).replace(/\/:(\w+)(\??)/g, (_, key, optional)=>{
-        let param = params[key];
-        if (optional === "?") return param == null ? "" : "/" + param;
-        if (param == null) invariant(false, 'Missing ":' + key + '" param');
-        return "/" + param;
-    }) // Remove any optional markers from optional static segments
-    .replace(/\?/g, "").replace(/(\/?)\*/, (_, prefix, __, str)=>{
-        const star = "*";
-        if (params[star] == null) // If no splat was provided, trim the trailing slash _unless_ it's
-        // the entire path
-        return str === "/*" ? "/" : "";
-         // Apply the splat
-        return "" + prefix + params[star];
-    });
+    } // ensure `/` is added at the beginning if the path is absolute
+    const prefix = path.startsWith("/") ? "/" : "";
+    const segments = path.split(/\/+/).map((segment, index, array)=>{
+        const isLastSegment = index === array.length - 1; // only apply the splat if it's the last segment
+        if (isLastSegment && segment === "*") {
+            const star = "*";
+            const starParam = params[star]; // Apply the splat
+            return starParam;
+        }
+        const keyMatch = segment.match(/^:(\w+)(\??)$/);
+        if (keyMatch) {
+            const [, key, optional] = keyMatch;
+            let param = params[key];
+            if (optional === "?") return param == null ? "" : param;
+            if (param == null) invariant(false, 'Missing ":' + key + '" param');
+            return param;
+        } // Remove any optional markers from optional static segments
+        return segment.replace(/\?$/g, "");
+    }) // Remove empty segments
+    .filter((segment)=>!!segment);
+    return prefix + segments.join("/");
 }
 /**
  * Performs pattern matching on a URL pathname and returns information about
@@ -43988,22 +43823,6 @@ function safelyDecodeURIComponent(value, paramName) {
     if (nextChar && nextChar !== "/") // pathname does not start with basename/
     return null;
     return pathname.slice(startIndex) || "/";
-}
-/**
- * @private
- */ function warning(cond, message) {
-    if (!cond) {
-        // eslint-disable-next-line no-console
-        if (typeof console !== "undefined") console.warn(message);
-        try {
-            // Welcome to debugging @remix-run/router!
-            //
-            // This error is thrown as a convenience so you can more easily
-            // find the source for a warning that appears in the console by
-            // enabling "pause on exceptions" in your JavaScript debugger.
-            throw new Error(message); // eslint-disable-next-line no-empty
-        } catch (e) {}
-    }
 }
 /**
  * Returns a resolved path object relative to the given pathname.
@@ -44341,7 +44160,8 @@ const IDLE_BLOCKER = {
 };
 const ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
 const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
-const isServer = !isBrowser; //#endregion
+const isServer = !isBrowser;
+const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region createRouter
 ////////////////////////////////////////////////////////////////////////////////
@@ -44349,7 +44169,9 @@ const isServer = !isBrowser; //#endregion
  * Create a router and listen to history POP navigations
  */ function createRouter(init) {
     invariant(init.routes.length > 0, "You must provide a non-empty routes array to createRouter");
-    let dataRoutes = convertRoutesToDataRoutes(init.routes);
+    let detectErrorBoundary = init.detectErrorBoundary || defaultDetectErrorBoundary; // Routes keyed by ID
+    let manifest = {}; // Routes in tree format for matching
+    let dataRoutes = convertRoutesToDataRoutes(init.routes, detectErrorBoundary, undefined, manifest);
     let inFlightDataRoutes; // Cleanup function for history
     let unlistenHistory = null; // Externally-provided functions to call on all state changes
     let subscribers = new Set(); // Externally-provided object to hold scroll restoration locations during routing
@@ -44376,7 +44198,8 @@ const isServer = !isBrowser; //#endregion
             [route.id]: error
         };
     }
-    let initialized = !initialMatches.some((m)=>m.route.loader) || init.hydrationData != null;
+    let initialized = // functions around still then we'll need to run them in initialize()
+    !initialMatches.some((m)=>m.route.lazy) && (!initialMatches.some((m)=>m.route.loader) || init.hydrationData != null);
     let router;
     let state = {
         historyAction: init.history.action,
@@ -44470,8 +44293,24 @@ const isServer = !isBrowser; //#endregion
                 return;
             }
             return startNavigation(historyAction, location);
-        }); // Kick off initial data load if needed.  Use Pop to avoid modifying history
-        if (!state.initialized) startNavigation(Action.Pop, state.location);
+        });
+        if (state.initialized) return router;
+        let lazyMatches = state.matches.filter((m)=>m.route.lazy);
+        if (lazyMatches.length === 0) {
+            // Kick off initial data load if needed.  Use Pop to avoid modifying history
+            startNavigation(Action.Pop, state.location);
+            return router;
+        } // Load lazy modules, then kick off initial data load if needed
+        let lazyPromises = lazyMatches.map((m)=>loadLazyRouteModule(m.route, detectErrorBoundary, manifest));
+        Promise.all(lazyPromises).then(()=>{
+            let initialized = !state.matches.some((m)=>m.route.loader) || init.hydrationData != null;
+            if (initialized) // We already have required loaderData so we can just set initialized
+            updateState({
+                initialized: true
+            });
+            else // We still need to kick off initial data loads
+            startNavigation(Action.Pop, state.location);
+        });
         return router;
     } // Clean up a router and it's side effects
     function dispose() {
@@ -44724,7 +44563,7 @@ const isServer = !isBrowser; //#endregion
         }); // Call our action and get the result
         let result;
         let actionMatch = getTargetMatch(matches, location);
-        if (!actionMatch.route.action) result = {
+        if (!actionMatch.route.action && !actionMatch.route.lazy) result = {
             type: ResultType.error,
             error: getInternalRouterError(405, {
                 method: request.method,
@@ -44733,7 +44572,7 @@ const isServer = !isBrowser; //#endregion
             })
         };
         else {
-            result = await callLoaderOrAction("action", request, actionMatch, matches, router.basename);
+            result = await callLoaderOrAction("action", request, actionMatch, matches, manifest, detectErrorBoundary, router.basename);
             if (request.signal.aborted) return {
                 shortCircuited: true
             };
@@ -44915,7 +44754,7 @@ const isServer = !isBrowser; //#endregion
     async function handleFetcherAction(key, routeId, path, match, requestMatches, submission) {
         interruptActiveLoads();
         fetchLoadMatches.delete(key);
-        if (!match.route.action) {
+        if (!match.route.action && !match.route.lazy) {
             let error = getInternalRouterError(405, {
                 method: submission.formMethod,
                 pathname: path,
@@ -44938,7 +44777,7 @@ const isServer = !isBrowser; //#endregion
         let abortController = new AbortController();
         let fetchRequest = createClientSideRequest(init.history, path, abortController.signal, submission);
         fetchControllers.set(key, abortController);
-        let actionResult = await callLoaderOrAction("action", fetchRequest, match, requestMatches, router.basename);
+        let actionResult = await callLoaderOrAction("action", fetchRequest, match, requestMatches, manifest, detectErrorBoundary, router.basename);
         if (fetchRequest.signal.aborted) {
             // We can delete this so long as we weren't aborted by ou our own fetcher
             // re-submit which would have put _new_ controller is in fetchControllers
@@ -45072,7 +44911,7 @@ const isServer = !isBrowser; //#endregion
         let abortController = new AbortController();
         let fetchRequest = createClientSideRequest(init.history, path, abortController.signal);
         fetchControllers.set(key, abortController);
-        let result = await callLoaderOrAction("loader", fetchRequest, match, matches, router.basename); // Deferred isn't supported for fetcher loads, await everything and treat it
+        let result = await callLoaderOrAction("loader", fetchRequest, match, matches, manifest, detectErrorBoundary, router.basename); // Deferred isn't supported for fetcher loads, await everything and treat it
         // as a normal load.  resolveDeferredData will return undefined if this
         // fetcher gets aborted, so we just leave result untouched and short circuit
         // below if that happens
@@ -45192,9 +45031,9 @@ const isServer = !isBrowser; //#endregion
         // then slice off the results into separate arrays so we can handle them
         // accordingly
         let results = await Promise.all([
-            ...matchesToLoad.map((match)=>callLoaderOrAction("loader", request, match, matches, router.basename)),
+            ...matchesToLoad.map((match)=>callLoaderOrAction("loader", request, match, matches, manifest, detectErrorBoundary, router.basename)),
             ...fetchersToLoad.map((f)=>{
-                if (f.matches && f.match) return callLoaderOrAction("loader", createClientSideRequest(init.history, f.path, request.signal), f.match, f.matches, router.basename);
+                if (f.matches && f.match) return callLoaderOrAction("loader", createClientSideRequest(init.history, f.path, request.signal), f.match, f.matches, manifest, detectErrorBoundary, router.basename);
                 else {
                     let error = {
                         type: ResultType.error,
@@ -45424,7 +45263,9 @@ const isServer = !isBrowser; //#endregion
 const UNSAFE_DEFERRED_SYMBOL = Symbol("deferred");
 function createStaticHandler(routes, opts) {
     invariant(routes.length > 0, "You must provide a non-empty routes array to createStaticHandler");
-    let dataRoutes = convertRoutesToDataRoutes(routes);
+    let manifest = {};
+    let detectErrorBoundary = (opts == null ? void 0 : opts.detectErrorBoundary) || defaultDetectErrorBoundary;
+    let dataRoutes = convertRoutesToDataRoutes(routes, detectErrorBoundary, undefined, manifest);
     let basename = (opts ? opts.basename : null) || "/";
     /**
    * The query() method is intended for document requests, in which we want to
@@ -45584,7 +45425,7 @@ function createStaticHandler(routes, opts) {
     }
     async function submit(request, matches, actionMatch, requestContext, isRouteRequest) {
         let result;
-        if (!actionMatch.route.action) {
+        if (!actionMatch.route.action && !actionMatch.route.lazy) {
             let error = getInternalRouterError(405, {
                 method: request.method,
                 pathname: new URL(request.url).pathname,
@@ -45596,7 +45437,7 @@ function createStaticHandler(routes, opts) {
                 error
             };
         } else {
-            result = await callLoaderOrAction("action", request, actionMatch, matches, basename, true, isRouteRequest, requestContext);
+            result = await callLoaderOrAction("action", request, actionMatch, matches, manifest, detectErrorBoundary, basename, true, isRouteRequest, requestContext);
             if (request.signal.aborted) {
                 let method = isRouteRequest ? "queryRoute" : "query";
                 throw new Error(method + "() call aborted");
@@ -45677,7 +45518,7 @@ function createStaticHandler(routes, opts) {
     }
     async function loadRouteData(request, matches, requestContext, routeMatch, pendingActionError) {
         let isRouteRequest = routeMatch != null; // Short circuit if we have no loaders to run (queryRoute())
-        if (isRouteRequest && !(routeMatch != null && routeMatch.route.loader)) throw getInternalRouterError(400, {
+        if (isRouteRequest && !(routeMatch != null && routeMatch.route.loader) && !(routeMatch != null && routeMatch.route.lazy)) throw getInternalRouterError(400, {
             method: request.method,
             pathname: new URL(request.url).pathname,
             routeId: routeMatch == null ? void 0 : routeMatch.route.id
@@ -45685,7 +45526,7 @@ function createStaticHandler(routes, opts) {
         let requestMatches = routeMatch ? [
             routeMatch
         ] : getLoaderMatchesUntilBoundary(matches, Object.keys(pendingActionError || {})[0]);
-        let matchesToLoad = requestMatches.filter((m)=>m.route.loader); // Short circuit if we have no loaders to run (query())
+        let matchesToLoad = requestMatches.filter((m)=>m.route.loader || m.route.lazy); // Short circuit if we have no loaders to run (query())
         if (matchesToLoad.length === 0) return {
             matches,
             // Add a null for all matched routes for proper revalidation on the client
@@ -45698,7 +45539,7 @@ function createStaticHandler(routes, opts) {
             activeDeferreds: null
         };
         let results = await Promise.all([
-            ...matchesToLoad.map((match)=>callLoaderOrAction("loader", request, match, matches, basename, true, isRouteRequest, requestContext))
+            ...matchesToLoad.map((match)=>callLoaderOrAction("loader", request, match, matches, manifest, detectErrorBoundary, basename, true, isRouteRequest, requestContext))
         ]);
         if (request.signal.aborted) {
             let method = isRouteRequest ? "queryRoute" : "query";
@@ -45796,6 +45637,8 @@ function getMatchesToLoad(history, state, matches, submission, location, isReval
     let boundaryId = pendingError ? Object.keys(pendingError)[0] : undefined;
     let boundaryMatches = getLoaderMatchesUntilBoundary(matches, boundaryId);
     let navigationMatches = boundaryMatches.filter((match, index)=>{
+        if (match.route.lazy) // We haven't loaded this route yet so we don't know if it's got a loader!
+        return true;
         if (match.route.loader == null) return false;
          // Always call the loader on new route instances and pending defer cancellations
         if (isNewLoader(state.loaderData, state.matches[index], match) || cancelledDeferredRoutes.some((id)=>id === match.route.id)) return true;
@@ -45882,20 +45725,60 @@ function shouldRevalidateLoader(loaderMatch, arg) {
     }
     return arg.defaultShouldRevalidate;
 }
-async function callLoaderOrAction(type, request, match, matches, basename, isStaticRequest, isRouteRequest, requestContext) {
+/**
+ * Execute route.lazy() methods to lazily load route modules (loader, action,
+ * shouldRevalidate) and update the routeManifest in place which shares objects
+ * with dataRoutes so those get updated as well.
+ */ async function loadLazyRouteModule(route, detectErrorBoundary, manifest) {
+    if (!route.lazy) return;
+    let lazyRoute = await route.lazy(); // If the lazy route function was executed and removed by another parallel
+    // call then we can return - first lazy() to finish wins because the return
+    // value of lazy is expected to be static
+    if (!route.lazy) return;
+    let routeToUpdate = manifest[route.id];
+    invariant(routeToUpdate, "No route found in manifest"); // Update the route in place.  This should be safe because there's no way
+    // we could yet be sitting on this route as we can't get there without
+    // resolving lazy() first.
+    //
+    // This is different than the HMR "update" use-case where we may actively be
+    // on the route being updated.  The main concern boils down to "does this
+    // mutation affect any ongoing navigations or any current state.matches
+    // values?".  If not, it should be safe to update in place.
+    let routeUpdates = {};
+    for(let lazyRouteProperty in lazyRoute){
+        let staticRouteValue = routeToUpdate[lazyRouteProperty];
+        let isPropertyStaticallyDefined = staticRouteValue !== undefined && // This property isn't static since it should always be updated based
+        // on the route updates
+        lazyRouteProperty !== "hasErrorBoundary";
+        warning(!isPropertyStaticallyDefined, 'Route "' + routeToUpdate.id + '" has a static property "' + lazyRouteProperty + '" ' + "defined but its lazy function is also returning a value for this property. " + ('The lazy route property "' + lazyRouteProperty + '" will be ignored.'));
+        if (!isPropertyStaticallyDefined && !immutableRouteKeys.has(lazyRouteProperty)) routeUpdates[lazyRouteProperty] = lazyRoute[lazyRouteProperty];
+    } // Mutate the route with the provided updates.  Do this first so we pass
+    // the updated version to detectErrorBoundary
+    Object.assign(routeToUpdate, routeUpdates); // Mutate the `hasErrorBoundary` property on the route based on the route
+    // updates and remove the `lazy` function so we don't resolve the lazy
+    // route again.
+    Object.assign(routeToUpdate, {
+        // To keep things framework agnostic, we use the provided
+        // `detectErrorBoundary` function to set the `hasErrorBoundary` route
+        // property since the logic will differ between frameworks.
+        hasErrorBoundary: detectErrorBoundary(_extends({}, routeToUpdate)),
+        lazy: undefined
+    });
+}
+async function callLoaderOrAction(type, request, match, matches, manifest, detectErrorBoundary, basename, isStaticRequest, isRouteRequest, requestContext) {
     if (basename === void 0) basename = "/";
     if (isStaticRequest === void 0) isStaticRequest = false;
     if (isRouteRequest === void 0) isRouteRequest = false;
     let resultType;
-    let result; // Setup a promise we can race against so that abort signals short circuit
-    let reject;
-    let abortPromise = new Promise((_, r)=>reject = r);
-    let onReject = ()=>reject();
-    request.signal.addEventListener("abort", onReject);
-    try {
-        let handler = match.route[type];
-        invariant(handler, "Could not find the " + type + ' to run on the "' + match.route.id + '" route');
-        result = await Promise.race([
+    let result;
+    let onReject;
+    let runHandler = (handler)=>{
+        // Setup a promise we can race against so that abort signals short circuit
+        let reject;
+        let abortPromise = new Promise((_, r)=>reject = r);
+        onReject = ()=>reject();
+        request.signal.addEventListener("abort", onReject);
+        return Promise.race([
             handler({
                 request,
                 params: match.params,
@@ -45903,12 +45786,47 @@ async function callLoaderOrAction(type, request, match, matches, basename, isSta
             }),
             abortPromise
         ]);
+    };
+    try {
+        let handler = match.route[type];
+        if (match.route.lazy) {
+            if (handler) {
+                // Run statically defined handler in parallel with lazy()
+                let values = await Promise.all([
+                    runHandler(handler),
+                    loadLazyRouteModule(match.route, detectErrorBoundary, manifest)
+                ]);
+                result = values[0];
+            } else {
+                // Load lazy route module, then run any returned handler
+                await loadLazyRouteModule(match.route, detectErrorBoundary, manifest);
+                handler = match.route[type];
+                if (handler) // Handler still run even if we got interrupted to maintain consistency
+                // with un-abortable behavior of handler execution on non-lazy or
+                // previously-lazy-loaded routes
+                result = await runHandler(handler);
+                else if (type === "action") throw getInternalRouterError(405, {
+                    method: request.method,
+                    pathname: new URL(request.url).pathname,
+                    routeId: match.route.id
+                });
+                else // lazy() route has no loader to run.  Short circuit here so we don't
+                // hit the invariant below that errors on returning undefined.
+                return {
+                    type: ResultType.data,
+                    data: undefined
+                };
+            }
+        } else {
+            invariant(handler, "Could not find the " + type + ' to run on the "' + match.route.id + '" route');
+            result = await runHandler(handler);
+        }
         invariant(result !== undefined, "You defined " + (type === "action" ? "an action" : "a loader") + " for route " + ('"' + match.route.id + "\" but didn't return anything from your `" + type + "` ") + "function. Please return a value or `null`.");
     } catch (e) {
         resultType = ResultType.error;
         result = e;
     } finally{
-        request.signal.removeEventListener("abort", onReject);
+        if (onReject) request.signal.removeEventListener("abort", onReject);
     }
     if (isResponse(result)) {
         let status = result.status; // Process redirects
@@ -46267,7 +46185,336 @@ function getTargetMatch(matches, location) {
     return pathMatches[pathMatches.length - 1];
 } //#endregion
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"6cJc6":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ"}],"2era4":[function() {},{}],"6mB9M":[function(require,module,exports) {
+"use strict";
+var Refresh = require("a268319e1bf59635");
+function debounce(func, delay) {
+    {
+        let timeout = undefined;
+        let lastTime = 0;
+        return function(args) {
+            // Call immediately if last call was more than the delay ago.
+            // Otherwise, set a timeout. This means the first call is fast
+            // (for the common case of a single update), and subsequent updates
+            // are batched.
+            let now = Date.now();
+            if (now - lastTime > delay) {
+                lastTime = now;
+                func.call(null, args);
+            } else {
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    timeout = undefined;
+                    lastTime = Date.now();
+                    func.call(null, args);
+                }, delay);
+            }
+        };
+    }
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module1) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module1.id + " " + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module1) {
+    if (isReactRefreshBoundary(module1.exports)) {
+        registerExportsForReactRefresh(module1);
+        if (module1.hot) {
+            module1.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module1.exports;
+            });
+            module1.hot.accept(function(getParents) {
+                var prevExports = module1.hot.data.prevExports;
+                var nextExports = module1.exports; // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module1) {
+    var exports = module1.exports, id = module1.id;
+    Refresh.register(exports, id + " %exports%");
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        Refresh.register(exportValue, id + " %exports% " + key);
+    }
+}
+
+},{"a268319e1bf59635":"3Qevs"}],"9Uua1":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$5d84 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$5d84.prelude(module);
+
+try {
+// import PropTypes from 'prop-types';
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieView", ()=>MovieView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouter = require("react-router");
+var _reactRouterDom = require("react-router-dom");
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+// import Badge from 'react-bootstrap/Badge';
+var _movieViewScss = require("./movie-view.scss");
+var _s = $RefreshSig$();
+const MovieView = ({ movies  })=>{
+    _s();
+    const { movieID  } = (0, _reactRouter.useParams)();
+    console.log(movieID);
+    const movie = movies.find((b)=>b.id === movieID);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+        className: "justify-content-md-center",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                md: 5,
+                lg: 4,
+                className: "mb-3",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                        src: movie.image,
+                        alt: movie.title
+                    }, void 0, false, {
+                        fileName: "src/components/MovieView/movie-view.jsx",
+                        lineNumber: 23,
+                        columnNumber: 22
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/MovieView/movie-view.jsx",
+                    lineNumber: 23,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/MovieView/movie-view.jsx",
+                lineNumber: 22,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                md: 7,
+                lg: 6,
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: "Title: "
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 27,
+                                columnNumber: 21
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: movie.title
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 28,
+                                columnNumber: 21
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/MovieView/movie-view.jsx",
+                        lineNumber: 26,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: "Description: "
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 31,
+                                columnNumber: 21
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: movie.description
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 32,
+                                columnNumber: 21
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/MovieView/movie-view.jsx",
+                        lineNumber: 30,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: "Genre: "
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 35,
+                                columnNumber: 21
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: movie.genre
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 36,
+                                columnNumber: 21
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/MovieView/movie-view.jsx",
+                        lineNumber: 34,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: "Director: "
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 39,
+                                columnNumber: 21
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: movie.director
+                            }, void 0, false, {
+                                fileName: "src/components/MovieView/movie-view.jsx",
+                                lineNumber: 40,
+                                columnNumber: 21
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/MovieView/movie-view.jsx",
+                        lineNumber: 38,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                        to: `/`,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "back-button",
+                            children: "Back"
+                        }, void 0, false, {
+                            fileName: "src/components/MovieView/movie-view.jsx",
+                            lineNumber: 44,
+                            columnNumber: 21
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/MovieView/movie-view.jsx",
+                        lineNumber: 43,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/MovieView/movie-view.jsx",
+                lineNumber: 25,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/MovieView/movie-view.jsx",
+        lineNumber: 21,
+        columnNumber: 9
+    }, undefined);
+}; // MovieView.PropTypes = {
+ //     movie: PropTypes.shape({
+ //         title: PropTypes.string,
+ //         description: PropTypes.string,
+ //         genre: PropTypes.string,
+ //         director: PropTypes.string
+ //     }).isRequired,
+ //     onBackClick: PropTypes.func.isRequired
+ // };
+_s(MovieView, "O3vF2RkakSsZj0hXldFkJXZ8hQI=", false, function() {
+    return [
+        (0, _reactRouter.useParams)
+    ];
+});
+_c = MovieView;
+var _c;
+$RefreshReg$(_c, "MovieView");
+
+  $parcel$ReactRefreshHelpers$5d84.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","./movie-view.scss":"4dzFV","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","react-router":"dbWyW","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","react-bootstrap/Button":"aPzUt"}],"4dzFV":[function() {},{}],"6cJc6":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7eca = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46416,7 +46663,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./login-view.scss":"giMYT"}],"giMYT":[function() {},{}],"bpvce":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./login-view.scss":"giMYT","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M"}],"giMYT":[function() {},{}],"bpvce":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9983 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46617,174 +46864,128 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./signup-view.scss":"i9VYi"}],"i9VYi":[function() {},{}],"9Uua1":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$5d84 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./signup-view.scss":"i9VYi","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M"}],"i9VYi":[function() {},{}],"enN6u":[function() {},{}],"3fCaw":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$5409 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$5d84.prelude(module);
+$parcel$ReactRefreshHelpers$5409.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieView", ()=>MovieView);
+parcelHelpers.export(exports, "NavigationBar", ()=>NavigationBar);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactRouter = require("react-router");
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
+var _nav = require("react-bootstrap/Nav");
+var _navDefault = parcelHelpers.interopDefault(_nav);
+var _navbar = require("react-bootstrap/Navbar");
+var _navbarDefault = parcelHelpers.interopDefault(_navbar);
+var _navDropdown = require("react-bootstrap/NavDropdown");
+var _navDropdownDefault = parcelHelpers.interopDefault(_navDropdown);
 var _reactRouterDom = require("react-router-dom");
-var _movieViewScss = require("./movie-view.scss");
-var _s = $RefreshSig$();
-const MovieView = ({ movies  })=>{
-    _s();
-    const { movieId  } = (0, _reactRouter.useParams)();
-    const movie = movies.find((b)=>b.id === movieId);
-    console.log(movie);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    className: "w-100",
-                    src: movie.image
+const NavigationBar = ({ user , onLoggedOut  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
+        bg: "light",
+        expand: "lg",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Brand, {
+                    as: (0, _reactRouterDom.Link),
+                    to: "/",
+                    children: "Oasis Movies"
                 }, void 0, false, {
-                    fileName: "src/components/MovieView/movie-view.jsx",
+                    fileName: "src/components/NavigationBar/navigation-bar.jsx",
+                    lineNumber: 13,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Toggle, {
+                    "aria-controls": "basic-navbar-nav"
+                }, void 0, false, {
+                    fileName: "src/components/NavigationBar/navigation-bar.jsx",
+                    lineNumber: 14,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Collapse, {
+                    id: "basic-navbar-nav",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default), {
+                        className: "me-auto",
+                        children: [
+                            !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                        as: (0, _reactRouterDom.Link),
+                                        to: "/login",
+                                        children: "Login"
+                                    }, void 0, false, {
+                                        fileName: "src/components/NavigationBar/navigation-bar.jsx",
+                                        lineNumber: 19,
+                                        columnNumber: 33
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                        as: (0, _reactRouterDom.Link),
+                                        to: "/signup",
+                                        children: "Signup"
+                                    }, void 0, false, {
+                                        fileName: "src/components/NavigationBar/navigation-bar.jsx",
+                                        lineNumber: 22,
+                                        columnNumber: 33
+                                    }, undefined)
+                                ]
+                            }, void 0, true),
+                            user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                        as: (0, _reactRouterDom.Link),
+                                        to: "/",
+                                        children: "Home"
+                                    }, void 0, false, {
+                                        fileName: "src/components/NavigationBar/navigation-bar.jsx",
+                                        lineNumber: 29,
+                                        columnNumber: 33
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                        onClick: onLoggedOut,
+                                        children: "Logout"
+                                    }, void 0, false, {
+                                        fileName: "src/components/NavigationBar/navigation-bar.jsx",
+                                        lineNumber: 32,
+                                        columnNumber: 33
+                                    }, undefined)
+                                ]
+                            }, void 0, true)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/NavigationBar/navigation-bar.jsx",
+                        lineNumber: 16,
+                        columnNumber: 21
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/NavigationBar/navigation-bar.jsx",
                     lineNumber: 15,
                     columnNumber: 17
                 }, undefined)
-            }, void 0, false, {
-                fileName: "src/components/MovieView/movie-view.jsx",
-                lineNumber: 14,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Title: "
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 18,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.title
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 19,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/MovieView/movie-view.jsx",
-                lineNumber: 17,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Description: "
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 22,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.description
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 23,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/MovieView/movie-view.jsx",
-                lineNumber: 21,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Genre: "
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 26,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.genre
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 27,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/MovieView/movie-view.jsx",
-                lineNumber: 25,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Director: "
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 30,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.director
-                    }, void 0, false, {
-                        fileName: "src/components/MovieView/movie-view.jsx",
-                        lineNumber: 31,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/MovieView/movie-view.jsx",
-                lineNumber: 29,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: `/`,
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    className: "back-button",
-                    children: "Back"
-                }, void 0, false, {
-                    fileName: "src/components/MovieView/movie-view.jsx",
-                    lineNumber: 34,
-                    columnNumber: 17
-                }, undefined)
-            }, void 0, false, {
-                fileName: "src/components/MovieView/movie-view.jsx",
-                lineNumber: 33,
-                columnNumber: 13
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/MovieView/movie-view.jsx",
-        lineNumber: 13,
+            ]
+        }, void 0, true, {
+            fileName: "src/components/NavigationBar/navigation-bar.jsx",
+            lineNumber: 12,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/NavigationBar/navigation-bar.jsx",
+        lineNumber: 11,
         columnNumber: 9
     }, undefined);
-}; // MovieView.propTypes = {
- //     movie: PropTypes.shape({
- //         title: PropTypes.string,
- //         description: PropTypes.string,
- //         genre: PropTypes.string,
- //         director: PropTypes.string
- //     }).isRequired,
- //     onBackClick: PropTypes.func.isRequired
- // };
-_s(MovieView, "e2L2DPdRH1AShA7yIOCsYRlzvlI=", false, function() {
-    return [
-        (0, _reactRouter.useParams)
-    ];
-});
-_c = MovieView;
+};
+_c = NavigationBar;
 var _c;
-$RefreshReg$(_c, "MovieView");
+$RefreshReg$(_c, "NavigationBar");
 
-  $parcel$ReactRefreshHelpers$5d84.postlude(module);
+  $parcel$ReactRefreshHelpers$5409.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M","./movie-view.scss":"4dzFV","react-router":"dbWyW","react-router-dom":"9xmpe"}],"4dzFV":[function() {},{}],"enN6u":[function() {},{}],"lJZlQ":[function() {},{}]},["g2O6D","6EBat","d8Dch"], "d8Dch", "parcelRequire1491")
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap/Container":"hEdsw","react-bootstrap/Nav":"cXyL2","react-bootstrap/Navbar":"1mHjo","react-bootstrap/NavDropdown":"8e6QB","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"HajzQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6mB9M"}],"lJZlQ":[function() {},{}]},["g2O6D","6EBat","d8Dch"], "d8Dch", "parcelRequire1491")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
