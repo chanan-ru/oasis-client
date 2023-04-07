@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import './login-view.scss';
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = useState("");
+    const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
@@ -16,7 +16,7 @@ export const LoginView = ({ onLoggedIn }) => {
         event.preventDefault();
 
         const data = {
-            Username: username,
+            Username: userName,
             Password: password
         };
 
@@ -29,7 +29,7 @@ export const LoginView = ({ onLoggedIn }) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log("Login response: ", data);
+
                 if (data.user) {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
@@ -42,41 +42,40 @@ export const LoginView = ({ onLoggedIn }) => {
                 alert("Something went wrong");
             });
 
-
     };
 
     return (
 
-        <Row className="justify-content-md-center">
-            <Col>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formUsername" className="mb-3">
-                        <Form.Label>Username:</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                            minLength="5"
-                        />
-                    </Form.Group>
+        // <Row >
+        <div className="login_form">
+            <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formUsername" className="mb-3">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={userName}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        minLength="5"
+                    />
+                </Form.Group>
 
-                    <Form.Group controlId="formPassword" className="mb-3">
-                        <Form.Label>Password:</Form.Label>
-                        <Form.Control
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            minLength="5"
-                        />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Login
-                    </Button>
-                </Form>
-            </Col>
-        </Row>
+                <Form.Group controlId="formPassword" className="mb-3">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        minLength="5"
+                    />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Login
+                </Button>
+            </Form>
+        </div>
+        // </Row>
 
     );
 };

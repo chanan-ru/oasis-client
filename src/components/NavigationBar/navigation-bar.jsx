@@ -3,14 +3,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from "react-router-dom";
+import { ResponsiveEmbed, Image } from 'react-bootstrap';
 
+import Logo from "./oasis.png";
+
+import "./navigation-bar.scss";
 
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg" className="custom_nav mb-5">
             <Container>
-                <Navbar.Brand as={Link} to="/">Oasis Movies</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><img src={Logo} className="app_logo" alt="logo" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -28,6 +32,13 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                             <>
                                 <Nav.Link as={Link} to="/">
                                     Home
+                                </Nav.Link>
+                            </>
+                        )}
+                        {user && (
+                            <>
+                                <Nav.Link as={Link} to="/users/:username">
+                                    Profile
                                 </Nav.Link>
                                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
                             </>
