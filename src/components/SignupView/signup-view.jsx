@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Navigate, useNavigate } from 'react-router';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -12,6 +13,8 @@ export const SignupView = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [birthday, setBirthday] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,10 +23,11 @@ export const SignupView = () => {
             Signupname: signUpName,
             Username: userName,
             Password: password,
-            Email: email
+            Email: email,
+            Birthday: birthday
         };
 
-        fetch("SIGNUP_URL", {
+        fetch("https://oasismovie.herokuapp.com/users/", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -36,11 +40,13 @@ export const SignupView = () => {
             } else {
                 alert("Signup failed");
             }
-        });
+        })
+            .catch((e) => console.log(e));
+        navigate('/login');
     };
 
     return (
-        <Row className="justify-content-md-center">
+        <>
             <Col>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="fromSignUpName" className="mb-3">
@@ -85,12 +91,21 @@ export const SignupView = () => {
                         />
                     </Form.Group>
 
+                    <Form.Group controlId='forBirthday' className='mt-3'>
+                        <Form.Label>Birthday:</Form.Label>
+                        <Form.Control
+                            type='date'
+                            value={birthday}
+                            onChange={(e) => setBirthday(e.target.value)}
+                        />
+                    </Form.Group>
+
                     <Button variant="primary" type="submit">
                         Sign Up
                     </Button>
                 </Form>
             </Col>
-        </Row>
+        </>
 
     );
 
