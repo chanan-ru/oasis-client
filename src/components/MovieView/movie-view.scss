@@ -1,0 +1,39 @@
+$maincolor: #ff5757;
+$secondcolor: #081012;
+$thirdcolor: #E0AB9A;
+$fourthcolor: #4D8FC3;
+
+
+.movie_detail {
+    .btn_style {
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        margin-bottom: 10px;
+        cursor: "pointer";
+        margin-right: 10px;
+        // width: 100%;
+
+
+    }
+
+    .btn_fav {
+        background-color: $fourthcolor;
+        border-color: $fourthcolor;
+    }
+
+
+    .back-button {
+        background-color: $maincolor;
+        border-color: $maincolor;
+    }
+
+    span {
+        margin-bottom: 5px;
+    }
+
+    .detail {
+        margin-bottom: 15px;
+    }
+
+
+}

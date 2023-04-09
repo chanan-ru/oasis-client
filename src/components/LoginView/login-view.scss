@@ -1,0 +1,15 @@
+$maincolor: #ff5757;
+$secondcolor: #081012;
+$thirdcolor: #E0AB9A;
+$fourthcolor: #4D8FC3;
+
+.login_form {
+    .form-label {
+        letter-spacing: 0.1rem;
+        color: $secondcolor;
+    }
+}
+
+.submit-btn {
+    padding: 0 15px 0 15px;
+}

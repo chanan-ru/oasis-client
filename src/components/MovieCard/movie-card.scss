@@ -1,0 +1,38 @@
+$maincolor: #ff5757;
+$secondcolor: #081012;
+$thirdcolor: #E0AB9A;
+$fourthcolor: #4D8FC3;
+
+img {
+    width: 100%
+}
+
+.movie_card {
+    // #favMovieButton {
+    //     margin-left: 15px;
+    // }
+
+    .btn_style {
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        margin-bottom: 10px;
+        width: 100%;
+        cursor: "pointer";
+
+    }
+
+    .btn_custom {
+        background-color: $maincolor;
+        border-color: $maincolor;
+    }
+
+    .btn_fav {
+        background-color: $fourthcolor;
+        border-color: $fourthcolor;
+    }
+
+
+
+
+
+}

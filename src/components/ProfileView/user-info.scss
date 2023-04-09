@@ -1,0 +1,23 @@
+$maincolor: #ff5757;
+$secondcolor: #081012;
+$thirdcolor: #E0AB9A;
+$fourthcolor: #4D8FC3;
+
+.avatar {
+    width: 250px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.user_detail {
+    padding: 20px;
+    border: 1px solid $thirdcolor;
+    text-align: center;
+    border-radius: 5px;
+
+    span {
+        // text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: $thirdcolor;
+    }
+}
