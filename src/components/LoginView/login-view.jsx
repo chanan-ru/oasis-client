@@ -12,7 +12,6 @@ export const LoginView = ({ onLoggedIn }) => {
     const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
-        // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
 
         const data = {
@@ -46,7 +45,6 @@ export const LoginView = ({ onLoggedIn }) => {
 
     return (
 
-        // <Row >
         <div className="login_form">
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formUsername" className="mb-3">
@@ -75,7 +73,6 @@ export const LoginView = ({ onLoggedIn }) => {
                 </Button>
             </Form>
         </div>
-        // </Row>
 
     );
 };

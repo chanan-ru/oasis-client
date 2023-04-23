@@ -9,7 +9,7 @@ export const SignupView = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [birthday, setBirthday] = useState("");
+    // const [birthday, setBirthday] = useState("");
 
     // const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export const SignupView = () => {
             Username: userName,
             Password: password,
             Email: email,
-            Birthday: birthday
+            // Birthday: birthday
         };
 
         fetch("https://oasismovie.herokuapp.com/users/", {
@@ -89,7 +89,7 @@ export const SignupView = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId='forBirthday' className='mb-3'>
+                    {/* <Form.Group controlId='forBirthday' className='mb-3'>
                         <Form.Label>Birthday:</Form.Label>
                         <Form.Control
                             type="date"
@@ -97,7 +97,7 @@ export const SignupView = () => {
                             onChange={(e) => setBirthday(e.target.value)}
                             required
                         />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Button variant="primary" type="submit">
                         Sign Up

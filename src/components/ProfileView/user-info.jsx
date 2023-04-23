@@ -7,8 +7,7 @@ import './user-info.scss';
 import Avatar from './avatar.png';
 
 export const UserInfo = ({ storedUser }) => {
-    // let userBirthday = moment.utc(user.Birthday).format('MM/DD/YYYY');
-    console.log(storedUser)
+    // console.log(storedUser)
     return (
         <>
             <h3>User's Details</h3>
@@ -17,7 +16,7 @@ export const UserInfo = ({ storedUser }) => {
                 <p><span>Name:</span> {storedUser.Name}</p>
                 <p><span>Username:</span> {storedUser.Username}</p>
                 <p><span>Email:</span> {storedUser.Email}</p>
-                <p><span>Birthday:</span> {storedUser.Birthday}</p>
+                {/* <p><span>Birthday:</span> {storedUser.Birthday}</p> */}
             </div>
 
         </>
