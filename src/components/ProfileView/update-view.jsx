@@ -116,14 +116,14 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                         />
                     </Form.Group>
 
-                    {/* <Form.Group controlId='forBirthday' className='mt-3'>
+                    <Form.Group controlId='forBirthday' className='mt-3'>
                         <Form.Label>Birthday:</Form.Label>
                         <Form.Control
                             type='date'
                             value={updateBirthday}
                             onChange={(e) => setupdateBirthday(e.target.value)}
                         />
-                    </Form.Group> */}
+                    </Form.Group>
 
                     <Button variant='primary' type='submit' className='mt-3'>
                         Update

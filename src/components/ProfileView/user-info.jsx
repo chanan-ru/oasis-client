@@ -16,7 +16,7 @@ export const UserInfo = ({ storedUser }) => {
                 <p><span>Name:</span> {storedUser.Name}</p>
                 <p><span>Username:</span> {storedUser.Username}</p>
                 <p><span>Email:</span> {storedUser.Email}</p>
-                {/* <p><span>Birthday:</span> {storedUser.Birthday}</p> */}
+                <p><span>Birthday:</span> {storedUser.Birthday}</p>
             </div>
 
         </>
