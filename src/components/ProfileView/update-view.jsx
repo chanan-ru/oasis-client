@@ -17,13 +17,19 @@ export const UpdateView = ({ storedToken, storedUser }) => {
             headers: { Authorization: `Bearer ${storedToken}` },
         })
 
-            .then((response) => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert("Changing userdata failed");
+                    return false;
+                }
+            })
             .then((updatedUser) => {
                 if (updatedUser) {
                     setUser(updatedUser);
                     localStorage.setItem('user', JSON.stringify(updatedUser));
                     window.location.reload();
-
                 }
             })
             .catch((error) => {
@@ -110,14 +116,14 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId='forBirthday' className='mt-3'>
+                    {/* <Form.Group controlId='forBirthday' className='mt-3'>
                         <Form.Label>Birthday:</Form.Label>
                         <Form.Control
                             type='date'
                             value={updateBirthday}
                             onChange={(e) => setupdateBirthday(e.target.value)}
                         />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Button variant='primary' type='submit' className='mt-3'>
                         Update
