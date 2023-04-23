@@ -1,26 +1,23 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from 'react-router';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Form, Button, Col } from "react-bootstrap";
 
 import './signup-view.scss';
 
 export const SignupView = () => {
 
-    const [signUpName, setSignUpName] = useState("");
+    const [name, setSignUpName] = useState("");
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
-    const navigate = useNavigate();
+
+    // const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const data = {
-            Signupname: signUpName,
+            Name: name,
             Username: userName,
             Password: password,
             Email: email,
@@ -36,24 +33,25 @@ export const SignupView = () => {
         }).then((response) => {
             if (response.ok) {
                 alert("Signup successful");
-                window.location.reload();
+                window.location.replace("/login");
             } else {
                 alert("Signup failed");
             }
         })
             .catch((e) => console.log(e));
-        navigate('/login');
     };
 
     return (
+
         <>
+
             <Col>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="fromSignUpName" className="mb-3">
                         <Form.Label>Name:</Form.Label>
                         <Form.Control
                             type="text"
-                            value={signUpName}
+                            value={name}
                             onChange={(e) => setSignUpName(e.target.value)}
                             required
                         />
@@ -91,12 +89,13 @@ export const SignupView = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId='forBirthday' className='mt-3'>
+                    <Form.Group controlId='forBirthday' className='mb-3'>
                         <Form.Label>Birthday:</Form.Label>
                         <Form.Control
-                            type='date'
+                            type="date"
                             value={birthday}
                             onChange={(e) => setBirthday(e.target.value)}
+                            required
                         />
                     </Form.Group>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from "react-router";
 
 import { UpdateView } from './update-view';
 import { UserInfo } from './user-info';
@@ -7,8 +8,7 @@ import { DeleteUser } from './delete-user';
 
 import { Row, Col, Card } from 'react-bootstrap';
 
-export const ProfileView = ({ user, movies }) => {
-    console.log(user)
+export const ProfileView = ({ movies }) => {
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
@@ -17,19 +17,14 @@ export const ProfileView = ({ user, movies }) => {
         <>
             <Row>
                 <Col md={5}>
-                    <UserInfo user={storedUser} />
+                    <UserInfo toredToken={storedToken} storedUser={storedUser} />
                     <UpdateView storedToken={storedToken} storedUser={storedUser} />
                     <DeleteUser storedToken={storedToken} storedUser={storedUser} />
                 </Col>
                 <Col md={7}>
                     <FavoriteMovies movies={movies} storedUser={storedUser} />
                 </Col>
-
-
             </Row>
-
-
-
         </>
     );
 };
